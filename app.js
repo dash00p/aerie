@@ -3,12 +3,14 @@ var express = require('express');
 var expressLayouts = require('express-ejs-layouts');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var session = require('express-session')
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
+var i18n = require("i18n-express");
 var gulp = require('gulp');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/user');
 var registryRouter = require('./routes/registry');
 
 var app = express();
@@ -23,6 +25,11 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: 'secret',
+  saveUninitialized: true,
+  resave: true
+}));
 app.use(sassMiddleware({
   src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
@@ -30,13 +37,24 @@ app.use(sassMiddleware({
   indentedSyntax: false, // true = .sass and false = .scss
   sourceMap: true
 }));
+app.use(i18n({
+  translationsPath: path.join(__dirname, 'i18n'), // <--- use here. Specify translations files path.
+  siteLangs: ["en","fr"],
+  textsVarName: 'lng'
+}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(expressLayouts);
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 app.use('/registry', registryRouter);
+
+//Get current url
+app.use(function(req, res, next){
+  req.active = req.path.split('/')[1] // [0] will be empty since routes start with '/'
+  next();
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

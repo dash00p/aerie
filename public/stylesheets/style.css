@@ -76,6 +76,12 @@ body {
       #wrapper.toggled #sidebar-wrapper {
         width: 250px; } }
 
+.hoverable:hover {
+  cursor: pointer; }
+
+.small {
+  font-size: 60%; }
+
 body {
   /* Margin bottom by footer height */
   margin-bottom: 61px; }

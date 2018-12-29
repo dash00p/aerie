@@ -1,0 +1,7 @@
+{
+    "CLOSE": "Close",
+    "MESSAGE_EDITED" : {
+        "SUCCESS" : "Message successfully edited !"
+    },
+    "UPDATE_CHARACTER_SHEET" : "Update the character sheet"
+}

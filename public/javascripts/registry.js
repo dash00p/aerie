@@ -1,19 +1,31 @@
-app.controller("registryCtrl", function($scope, $http) {
+function registryCtrl($http) {
+    var vm = this;
+    vm.messageEdited = false;
+
     $http.get(`${bot_url}/registry/channel/all`).then( res => {
-        $scope.channels = res.data;
+        vm.channels = res.data;
     });
 
-    $scope.showInitialPost = channelId => {
+    vm.showInitialPost = channelId => {
+        vm.messageEdited = false;
         $http.get(`${bot_url}/registry/channel/${channelId}/firstPost`).then( res => {
-            $scope.message = res.data;
-            $scope.selectedChannel = channelId;
+            vm.message = res.data;
+            vm.selectedChannel = vm.channels.find(c => c.id === channelId);
             $('#messageModal').modal('show')
         });
     }
 
-    $scope.updateInitialPost = () => {
-        $http.post(`${bot_url}/registry/message/${$scope.message.id}`, {text:$scope.message.content, channelNumber: $scope.selectedChannel}).then( res => {
-            $scope.messageEdited = true;
+    vm.updateInitialPost = () => {
+        $http.post(`${bot_url}/registry/message/${vm.message.id}`, {text:vm.message.content, channelNumber: vm.selectedChannel.id}).then( res => {
+            vm.messageEdited = true;
         });
     }
-});
+
+    vm.insertPost = () => {
+        $http.post(`${bot_url}/registry/message/new`, {text:vm.message.content, channelNumber: vm.selectedChannel.id}).then( res => {
+            vm.messageEdited = true;
+        });
+    }
+};
+
+app.controller("registryCtrl", registryCtrl);

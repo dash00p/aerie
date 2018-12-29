@@ -6,7 +6,8 @@ const conf = require('../conf');
 router.get('/', (req, res, next) => {
     res.render('registry', {
         title: 'Registry',
-        bot_url: conf.url.bernie
+        bot_url: conf.url.bernie,
+        current_url : req.originalUrl
       });
 });
 

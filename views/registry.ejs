@@ -1,7 +1,7 @@
 <h1>
     <%= title %>
 </h1>
-<section ng-controller="registryCtrl">
+<section ng-controller="registryCtrl as regVm">
     <table class="table table-hover">
         <thead>
             <tr>
@@ -11,19 +11,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="channel in channels" ng-click="showInitialPost(channel.id)">
-            <td>{{channel.id}}</td>
-            <td>{{channel.name}}</td>
-            <td>{{channel.category}}</td>
+            <tr ng-repeat="channel in regVm.channels" ng-click="regVm.showInitialPost(channel.id)" class="hoverable">
+                <td>{{channel.id}}</td>
+                <td>{{channel.name}}</td>
+                <td>{{channel.category}}</td>
             </tr>
         </tbody>
     </table>    
     <!-- Modal -->
-    <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade shadow" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="messageModalLabel">{{regVm.selectedChannel.category}} - {{regVm.selectedChannel.name}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -31,18 +31,18 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group col-md-12">
-                            Posté par : {{message.author.username}} <small>{{message.author.tag}} </small>
-                            <img class="rounded" ng-src="{{message.author.avatarURL}}" style="max-width:64px; max-height: 64px;"/>
+                            Auteur : {{regVm.message.author.username}} <span class="badge badge-secondary small">{{regVm.message.author.tag}} </span>
+                            <img class="rounded-circle" ng-src="{{regVm.message.author.avatarURL}}" style="max-width:64px; max-height: 64px;"/>
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Contenu du message</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ng-model="message.content"></textarea>
+                            <label for="messageTextArea">Contenu du message</label>
+                            <textarea class="form-control" id="messageTextArea" rows="20" ng-model="regVm.message.content"></textarea>
                         </div> 
                     </form> 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="alert alert-success col-md-12" role="alert" ng-show="messageEdited">
-                                    Message édité avec succès !
+                            <div class="alert alert-success col-md-12" role="alert" ng-show="regVm.messageEdited">
+                                    <%=lng.MESSAGE_EDITED.SUCCESS%>
                             </div>
                         </div>
                     </div> 
@@ -50,8 +50,8 @@
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" ng-click="updateInitialPost()">Mettre à jour la fiche</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><%=lng.CLOSE%></button>
+                            <button type="button" class="btn btn-primary" ng-click="regVm.updateInitialPost()"><%=lng.UPDATE_CHARACTER_SHEET%></button>
                         </div>
                     </div>
                 </div>
