@@ -1,19 +1,23 @@
 {
   "name": "aerie.js",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "angular": "^1.7.5",
+    "browserify": "^16.2.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "~4.16.0",
     "express-ejs-layouts": "^2.5.0",
+    "gulp": "^4.0.0",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
     "node-sass-middleware": "0.11.0",
+    "passport": "^0.4.0",
     "waterline": "^0.13.6"
   }
 }

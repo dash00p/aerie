@@ -1,0 +1,66 @@
+<h1>
+    <%= title %>
+</h1>
+<section ng-controller="registryCtrl">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+            <th scope="col">id</th>
+            <th scope="col">name</th>
+            <th scope="col">category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="channel in channels" ng-click="showInitialPost(channel.id)">
+            <td>{{channel.id}}</td>
+            <td>{{channel.name}}</td>
+            <td>{{channel.category}}</td>
+            </tr>
+        </tbody>
+    </table>    
+    <!-- Modal -->
+    <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group col-md-12">
+                            Posté par : {{message.author.username}} <small>{{message.author.tag}} </small>
+                            <img class="rounded" ng-src="{{message.author.avatarURL}}" style="max-width:64px; max-height: 64px;"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Contenu du message</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ng-model="message.content"></textarea>
+                        </div> 
+                    </form> 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-success col-md-12" role="alert" ng-show="messageEdited">
+                                    Message édité avec succès !
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" ng-click="updateInitialPost()">Mettre à jour la fiche</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    const bot_url = '<%- bot_url %>';
+</script>
+<%- contentFor('script') %>
+<script src="/javascripts/registry.js"></script>

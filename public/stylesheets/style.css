@@ -17,16 +17,14 @@ body {
     #wrapper.toggled #sidebar-wrapper {
       width: 250px; }
     #wrapper.toggled #page-content-wrapper {
-      position: absolute;
       margin-right: -250px; }
 
 #sidebar-wrapper {
   z-index: 1000;
   position: fixed;
-  left: 250px;
+  left: 0;
   width: 0;
   height: 100%;
-  margin-left: -250px;
   overflow-y: auto;
   background: #000;
   -webkit-transition: all 0.5s ease;
@@ -37,7 +35,6 @@ body {
 
 #page-content-wrapper {
   width: 100%;
-  position: absolute;
   padding: 15px; }
 
 /* Sidebar Styles */
@@ -77,16 +74,13 @@ body {
     #wrapper.toggled {
       padding-left: 250px; }
       #wrapper.toggled #sidebar-wrapper {
-        width: 250px; }
-      #wrapper.toggled #page-content-wrapper {
-        position: relative;
-        margin-right: 0; } }
+        width: 250px; } }
 
 body {
   /* Margin bottom by footer height */
   margin-bottom: 61px; }
   body > footer.footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
