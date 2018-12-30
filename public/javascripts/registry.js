@@ -26,6 +26,12 @@ function registryCtrl($http) {
             vm.messageEdited = true;
         });
     }
+
+    vm.pinPost = () => {
+        $http.post(`${bot_url}/registry/message/${vm.message.id}/${vm.message.pinned?'pin':'unpin'}`, {channelNumber: vm.selectedChannel.id}).then( res => {
+            vm.messagePinned = true;
+        });
+    }
 };
 
 app.controller("registryCtrl", registryCtrl);

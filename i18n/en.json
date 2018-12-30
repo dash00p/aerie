@@ -3,5 +3,12 @@
     "MESSAGE_EDITED" : {
         "SUCCESS" : "Message successfully edited !"
     },
-    "UPDATE_CHARACTER_SHEET" : "Update the character sheet"
+    "UPDATE_CHARACTER_SHEET" : "Update the character sheet",
+    "REGISTRY_ANEKSI" : "Registry of Al Aneksi Clan",
+    "CHANNEL_NAME" : "Channel name",
+    "CHANNEL_ID" : "Channel identifier",
+    "CATEGORY" : "Category",
+    "AUTHOR" : "Author",
+    "PIN_MESSAGE" : "Pin this message",
+    "MESSAGE_CONTENT" : "Message content"
 }

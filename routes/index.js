@@ -23,7 +23,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', {
     title: 'Les tests de Bernie',
-    current_url : res.req.originalUrl
+    current_url : req.baseUrl
   });
 });
 

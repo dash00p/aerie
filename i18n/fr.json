@@ -3,5 +3,12 @@
     "MESSAGE_EDITED" : {
         "SUCCESS" : "Message édité avec succès !"
     },
-    "UPDATE_CHARACTER_SHEET" : "Mettre à jour la fiche de personnage"
+    "UPDATE_CHARACTER_SHEET" : "Mettre à jour la fiche de personnage",
+    "REGISTRY_ANEKSI" : "Registre du Clan Al Aneksi",
+    "CHANNEL_NAME" : "Nom du canal",
+    "CHANNEL_ID" : "Identifiant du canal",
+    "CATEGORY" : "Catégorie",
+    "AUTHOR" : "Auteur",
+    "PIN_MESSAGE" : "Epingler ce message",
+    "MESSAGE_CONTENT" : "Contenu du message"
 }
