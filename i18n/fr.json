@@ -10,5 +10,6 @@
     "CATEGORY" : "Catégorie",
     "AUTHOR" : "Auteur",
     "PIN_MESSAGE" : "Epingler ce message",
-    "MESSAGE_CONTENT" : "Contenu du message"
+    "MESSAGE_CONTENT" : "Contenu du message",
+    "CHARACTER_STRING" : "caractères"
 }

@@ -10,5 +10,6 @@
     "CATEGORY" : "Category",
     "AUTHOR" : "Author",
     "PIN_MESSAGE" : "Pin this message",
-    "MESSAGE_CONTENT" : "Message content"
+    "MESSAGE_CONTENT" : "Message content",
+    "CHARACTER_STRING" : "characters"
 }

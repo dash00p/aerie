@@ -12,7 +12,12 @@ function registryCtrl($http) {
         vm.messageEdited = vm.messageError = false;
         $http.get(`${bot_url}/registry/channel/${channelId}/firstPost`).then( res => {
             vm.reservedMessages = res.data;
-            vm.message = vm.reservedMessages[0];
+            vm.message = JSON.parse(JSON.stringify(vm.reservedMessages[0]));
+            vm.message.content = "";
+            vm.reservedMessages.forEach( m => {
+                vm.message.content += m.content+"\n";
+            });
+
             vm.selectedChannel = vm.channels.find(c => c.id === channelId);
             $('#messageModal').modal('show');
         });
