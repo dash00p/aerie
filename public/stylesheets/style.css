@@ -223,12 +223,13 @@ body {
     bottom: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
-    height: 60px;
-    line-height: 60px;
+    height: 40px;
+    line-height: 40px;
     /* Vertically center the text there */
     background-color: #f5f5f5; }
 
 a {
-  color: #00B7FF; }
+  color: #2196f3;
+  transition: 0.3s ease color; }
 
 /*# sourceMappingURL=style.css.map */
