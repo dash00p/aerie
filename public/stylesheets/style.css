@@ -82,6 +82,22 @@ body {
 .small {
   font-size: 60%; }
 
+.no-highlight::selection {
+  background: none;
+  /* WebKit/Blink Browsers */ }
+
+.no-highlight ::selection {
+  background: none;
+  /* WebKit/Blink Browsers */ }
+
+.no-highlight::-moz-selection {
+  background: none;
+  /* Gecko Browsers */ }
+
+.no-highlight ::-moz-selection {
+  background: none;
+  /* Gecko Browsers */ }
+
 body {
   /* Margin bottom by footer height */
   margin-bottom: 61px; }

@@ -2,16 +2,30 @@
     <%=lng.REGISTRY_ANEKSI%>
 </h1>
 <section ng-controller="registryCtrl as regVm">
+    <div class="row mt-1 mb-1 justify-content-end">
+        <div class="col-md-3 col-md-offset-9">
+            <input type="text" class="form-control form-control-sm" ng-model="regVm.searchValue" placeholder="Rechercher par canal, catégorie ou identifiant">
+        </div>
+    </div>
     <table class="table table-hover">
         <thead>
-            <tr>
-            <th scope="col"><%=lng.CHANNEL_ID%></th>
-            <th scope="col"><%=lng.CHANNEL_NAME%></th>
-            <th scope="col"><%=lng.CATEGORY%></th>
+            <tr class="no-highlight hoverable">
+            <th scope="col" ng-click="regVm.changeOrderBy('id')">
+                <%=lng.CHANNEL_ID%>
+                <i class="fas" ng-class="regVm.orderByIcon('id')?'fa-sort-down':'fa-sort-up' "></i>
+            </th>
+            <th scope="col" ng-click="regVm.changeOrderBy('name')">
+                <%=lng.CHANNEL_NAME%>
+                <i class="fas" ng-class="regVm.orderByIcon('name')?'fa-sort-down':'fa-sort-up' "></i>
+            </th>
+            <th scope="col" ng-click="regVm.changeOrderBy('category')">
+                <%=lng.CATEGORY%>
+                <i class="fas" ng-class="regVm.orderByIcon('category')?'fa-sort-down':'fa-sort-up' "></i>
+            </th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="channel in regVm.channels" ng-click="regVm.showInitialPost(channel.id)" class="hoverable">
+            <tr ng-repeat="channel in regVm.channels | filter:regVm.searchValue | orderBy:regVm.orderByValue:regVm.orderByReverse" ng-click="regVm.showInitialPost(channel.id)" class="hoverable">
                 <td>{{channel.id}}</td>
                 <td>{{channel.name}}</td>
                 <td>{{channel.category}}</td>

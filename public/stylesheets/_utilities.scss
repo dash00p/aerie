@@ -5,3 +5,19 @@
 .small{
     font-size: 60%;
 }
+
+.no-highlight{
+    &::selection {
+        background: none; /* WebKit/Blink Browsers */
+    }
+    ::selection {
+        background: none; /* WebKit/Blink Browsers */
+    }
+
+    &::-moz-selection {
+        background: none; /* Gecko Browsers */
+    }
+    ::-moz-selection {
+        background: none; /* Gecko Browsers */
+    }
+}
