@@ -1,6 +1,6 @@
 function registryCtrl($http) {
     var vm = this;
-    vm.messageEdited = false;
+    vm.messageEdited = vm.messageError = false;
     vm.orderByValue = 'category';
     vm.orderByReverse = false;
 
@@ -9,20 +9,55 @@ function registryCtrl($http) {
     });
 
     vm.showInitialPost = channelId => {
-        vm.messageEdited = false;
+        vm.messageEdited = vm.messageError = false;
         $http.get(`${bot_url}/registry/channel/${channelId}/firstPost`).then( res => {
-            vm.message = res.data;
+            vm.reservedMessages = res.data;
+            vm.message = vm.reservedMessages[0];
             vm.selectedChannel = vm.channels.find(c => c.id === channelId);
-            $('#messageModal').modal('show')
+            $('#messageModal').modal('show');
         });
     }
 
     vm.updateInitialPost = () => {
-        $http.post(`${bot_url}/registry/message/${vm.message.id}`, {text:vm.message.content, channelNumber: vm.selectedChannel.id}).then( res => {
-            vm.messageEdited = true;
-        });
+        vm.messageEdited = vm.messageError = false;
+
+        if(vm.message.content.length <= 2000){
+            $http.post(`${bot_url}/registry/message/${vm.message.id}`, {text:vm.message.content, channelNumber: vm.selectedChannel.id})
+            .then( res => {
+                vm.messageEdited = true;
+            })
+            .catch( res => {
+                vm.messageError = true;
+                vm.messageErrorText = res.data.message;
+            });
+        }
+        else{
+            let stringStart = 0;
+            const postNumber = Math.ceil(vm.message.content.length/2000);
+            let j = 0;
+            for(i=0; i < postNumber; i++){
+                let content = vm.message.content.substring(stringStart, 2000+i*2000);
+                const contentLength = content.lastIndexOf(" ");
+
+                if(contentLength > -1 && i !== postNumber-1)
+                    content = content.substring(0, contentLength);
+                stringStart += content.length+1;
+
+                $http.post(`${bot_url}/registry/message/${vm.reservedMessages[i].id}`, {text:content, channelNumber: vm.selectedChannel.id})
+                .then( res => {
+                    j++;
+                    if(j === postNumber)
+                        vm.messageEdited = true;
+                })
+                .catch( res => {
+                    vm.messageError = true;
+                    vm.messageErrorText = res.data.message;
+                });
+            }
+        }
     }
 
+    //TODO
     vm.insertPost = () => {
         $http.post(`${bot_url}/registry/message/new`, {text:vm.message.content, channelNumber: vm.selectedChannel.id}).then( res => {
             vm.messageEdited = true;
