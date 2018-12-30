@@ -11,5 +11,6 @@
     "AUTHOR" : "Auteur",
     "PIN_MESSAGE" : "Epingler ce message",
     "MESSAGE_CONTENT" : "Contenu du message",
-    "CHARACTER_STRING" : "caractères"
+    "CHARACTER_STRING" : "caractères",
+    "NIGHT_MODE" : "Mode nuit"
 }

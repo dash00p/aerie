@@ -11,5 +11,6 @@
     "AUTHOR" : "Author",
     "PIN_MESSAGE" : "Pin this message",
     "MESSAGE_CONTENT" : "Message content",
-    "CHARACTER_STRING" : "characters"
+    "CHARACTER_STRING" : "characters",
+    "NIGHT_MODE" : "Night mode"
 }

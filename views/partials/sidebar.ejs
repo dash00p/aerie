@@ -15,6 +15,20 @@
         <li>
             <a class="<%=(lang=="en"?"active":"")%>" href=".<%=locals.current_url%>?clang=en">English</a>
         </li>
+        <li>
+            <div class="form-group">  
+                <span class="switch switch-sm">
+                    <input type="checkbox" class="switch" 
+                    <% if(typeof locals.cookies.nightmode !== 'undefined'){ %>checked<% } %> id="switchNightMode">
+                    <label for="switchNightMode">
+                        <span>
+                            <i class="far fa-moon"></i>
+                            <%=lng.NIGHT_MODE%>
+                        </span>
+                    </label>
+                </span>
+            </div>
+        </li>
     </ul>
 </div>
 <a href="#menu-toggle" class="btn btn-dark mt-2 ml-2" id="menu-toggle"><i class="fas fa-bars"></i></a>

@@ -1,0 +1,44 @@
+.nightmode{
+    background-color: #323232;
+    color: #eee;
+    
+    .form-control{
+        &,&:focus{
+            background-color: #262626;
+            color: #979797;
+            border-color: #383838;
+        }
+    }
+
+    .table td, .table th{
+        border-top-color: #1a1a1a;
+    }
+
+    .table thead th{
+        border-bottom-color: #252525;
+    }
+
+    .footer, .modal-content{
+        background-color: #232323;
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .modal-header{
+        border-bottom-color: #1a1a1a;
+    }
+
+    .modal-footer{
+        border-top-color: #1a1a1a;
+    }
+
+    .close,
+    .close:not(:disabled):not(.disabled):focus,
+    .close:not(:disabled):not(.disabled):hover{
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
+    }
+
+    .shadow{
+        box-shadow:0 0.5rem 1rem rgba(255, 255, 255, 0.04)!important;
+    }
+}
