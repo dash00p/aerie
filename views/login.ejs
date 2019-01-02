@@ -1,0 +1,19 @@
+<h1>
+    <%= title %>
+</h1>
+<!-- show any messages that come back with authentication -->
+<% if (message.length > 0) { %>
+    <div class="alert alert-danger"><%= message %></div>
+<% } %>
+<form class="col-md-8" action="login" method="post">
+    <div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="inputEmail4">Username</label>
+        <input type="text" class="form-control" id="inputEmail4" placeholder="Username" name="username" value="Shoop">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="inputPassword4">Password</label>
+        <input type="password" class="form-control" id="inputPassword4" placeholder="Password" name="password" value="loukoum">
+    </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+</form>

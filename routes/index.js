@@ -1,4 +1,6 @@
 var express = require('express');
+const passportConf = require('../controller/passport');
+const passport = passportConf.passportRef;
 // var passport = require('passort'),
 //     LocalStrategy = require('passport-local').Strategy;
 
@@ -23,12 +25,21 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', {
     title: 'Les tests de Bernie',
-    current_url : req.baseUrl
+    //current_url : req.baseUrl
   });
 });
 
-router.post('/login', function(req, res, next) {
-
+router.get('/login', function(req, res, next) {
+  res.render('login', {
+    title: 'Connexion',
+    message: req.flash('loginMessage')
+  });
 });
+
+router.post('/login', passport.authenticate('local-login', {
+  successRedirect : '/profile', // redirect to the secure profile section
+  failureRedirect : '/login', // redirect back to the signup page if there is an error
+  failureFlash : true // allow flash messages
+}));
 
 module.exports = router;

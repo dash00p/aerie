@@ -1,3 +1,4 @@
+//https://www.quirksmode.org/js/cookies.html
 function setCookie(name,value,days) {
     var expires = "";
     if (days) {

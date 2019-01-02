@@ -7,13 +7,16 @@
             </a>
         </li>
         <li>
+            <a href="./login">Connexion</a>
+        </li>
+        <li>
             <a href="./registry"><%=lng.REGISTRY_ANEKSI%></a>
         </li>
         <li>
-            <a class="<%=(lang=="fr"?"active":"")%>" href=".<%=locals.current_url%>?clang=fr">Français</a>
+            <a class="<%=(lang=="fr"?"active":"")%>" href="<%=locals.active%>?clang=fr">Français</a>
         </li>
         <li>
-            <a class="<%=(lang=="en"?"active":"")%>" href=".<%=locals.current_url%>?clang=en">English</a>
+            <a class="<%=(lang=="en"?"active":"")%>" href="<%=locals.active%>?clang=en">English</a>
         </li>
         <li>
             <div class="form-group">  
