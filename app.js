@@ -67,6 +67,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next) {
   if(req.session && req.session.passport && typeof req.session.passport == "string"){
     res.locals.user = req.user = JSON.parse(req.session.passport).user;
+    res.locals.isAuthenticated = true;
   }
   res.locals.cookies = req.cookies;
   next();

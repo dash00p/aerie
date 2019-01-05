@@ -5,7 +5,7 @@ var LocalStrategy   = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
   
 // load up the user model
-var User = require('../model/user');
+var User = require('../model/User');
 // expose this function to our app using module.exports
 module.exports = passport = function(passportParam) {
     passport.passportRef = passportParam;
