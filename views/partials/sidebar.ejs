@@ -6,12 +6,16 @@
                 Aerie
             </a>
         </li>
+        <% if(typeof isAuthenticated !== 'undefined'){ %>
         <li>
-            <a href="./login">Connexion</a>
+            Bienvenue <%= user.username.charAt(0).toUpperCase() + user.username.substring(1) %> !
         </li>
-        <li>
-            <a href="./registry"><%=lng.REGISTRY_ANEKSI%></a>
-        </li>
+            <% if(user.rank > 0){ %>
+            <li>
+                <a href="./registry"><%=lng.REGISTRY_ANEKSI%></a>
+            </li>
+            <% } %> 
+        <% } %> 
         <li>
             <a class="<%=(lang=="fr"?"active":"")%>" href="<%=locals.active%>?clang=fr">Français</a>
         </li>
@@ -22,7 +26,7 @@
             <div class="form-group">  
                 <span class="switch switch-sm">
                     <input type="checkbox" class="switch" 
-                    <% if(typeof locals.cookies.nightmode !== 'undefined'){ %>checked<% } %> id="switchNightMode">
+                    <% if(typeof cookies.nightmode !== 'undefined'){ %>checked<% } %> id="switchNightMode">
                     <label for="switchNightMode">
                         <span>
                             <i class="far fa-moon"></i>
@@ -31,6 +35,13 @@
                     </label>
                 </span>
             </div>
+        </li>
+        <li>
+            <% if(typeof isAuthenticated !== 'undefined'){ %>
+                <a href="./logout"><%=lng.LOG_OUT%></a>
+            <% } else { %>
+                <a href="./login"><%=lng.LOG_IN%></a>
+            <% } %>
         </li>
     </ul>
 </div>

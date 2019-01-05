@@ -12,5 +12,11 @@
     "PIN_MESSAGE" : "Epingler ce message",
     "MESSAGE_CONTENT" : "Contenu du message",
     "CHARACTER_STRING" : "caractères",
-    "NIGHT_MODE" : "Mode nuit"
+    "NIGHT_MODE" : "Mode nuit",
+    "LOG_IN" : "Se connecter",
+    "LOG_OUT" : "Se déconnecter",
+    "USERNAME" : "Pseudo",
+    "PASSWORD" : "Mot de passe",
+    "CONNECTION" : "Connexion",
+    "INSCRIPTION" : "Inscription"
 }

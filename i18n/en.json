@@ -12,5 +12,11 @@
     "PIN_MESSAGE" : "Pin this message",
     "MESSAGE_CONTENT" : "Message content",
     "CHARACTER_STRING" : "characters",
-    "NIGHT_MODE" : "Night mode"
+    "NIGHT_MODE" : "Night mode",
+    "LOG_IN" : "Log in",
+    "LOG_OUT" : "Log out",
+    "USERNAME" : "Username",
+    "PASSWORD" : "Password",
+    "CONNECTION" : "Connection",
+    "INSCRIPTION" : "Inscription"
 }

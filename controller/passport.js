@@ -17,13 +17,13 @@ module.exports = passport = function(passportParam) {
 
     // used to serialize the user for the session
     passport.passportRef.serializeUser(function(user, done) {
-        done(null, user.id);
+        done(null, user);
     });
 
     // used to deserialize the user
     passport.passportRef.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
-            done(err, user);
+        User.findById(id, function(user) {
+            done(user);
         });
     });
 
@@ -43,15 +43,15 @@ module.exports = passport = function(passportParam) {
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.findOne({ username :  username }).then( (user) => {
+        User.findOne({where:{ username :  username }}).then( (user) => {
             // if no user is found, return the message
             if (!user)
-                return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+                return done(null, false, {text:'No user found.', type:'danger'}); // req.flash is the way to set flashdata using connect-flash
 
             // if the user is found but the password is wrong
             bcrypt.compare(password, user.password).then(match => {
                 if (!match)
-                    return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+                    return done(null, false, {text:'Oops! Wrong password.', type:'danger'}); // create the loginMessage and save it to session as flashdata
 
                 // all is well, return successful user
                 return done(null, user);

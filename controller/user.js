@@ -1,4 +1,6 @@
 const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
 const conf = require('../conf');
 const bcrypt = require('bcrypt');
   const saltRounds = 10;
@@ -63,18 +65,37 @@ const sequelize = new Sequelize(conf.db.name, conf.db.username, conf.db.password
   //User.sync({force:true});
 
   const UserController = {
-    passport : passport,
+    //passport : passport,
     init : passportParam => {
       passport = passportParam;
     },
     create : async user => {
-      let hash = await bcrypt.hash("loukoum", saltRounds);
-      let result = await User.create({
-        username: 'shoop',
-        password: hash,
-        email: "shoop@aerie.fr"
-      });
-      return result.toJSON();
+      let response = {message:{text:""}};
+      let hash = await bcrypt.hash(user.sub_password, saltRounds);
+      let result = await User.findOrCreate({
+        where: {[Op.or]: [
+        { username: user.sub_username },
+        { email: user.sub_email }]},
+        defaults: { username : user.sub_username, email : user.sub_email, password : hash, rank: 0 }});
+
+      let isCreated =  result[result.length-1];
+      if(!isCreated){
+        response.success = false;
+        response.message.type = "danger"
+        if(result[0].username.toLowerCase() == user.sub_username.toLowerCase())
+          response.message.text += "Pseudo déjà utilisé";
+        if(result[0].email.toLowerCase() == user.sub_email.toLowerCase()){
+          if(response.message.text.length > 0)
+            response.message.text += ", ";
+          response.message.text += "Adresse mail déjà utilisée";
+        }
+      }
+      else{
+        response.success = true;
+        response.message.type = "success";
+        response.message.text = "Compte créé avec succès !";
+      }
+      return response;
 
     },
     // login : (req, res) => {

@@ -20,9 +20,9 @@ const sequelize = new Sequelize(conf.db.name, conf.db.username, conf.db.password
   });
 
 const model = sequelize.define('user', {
-    username: Sequelize.STRING(50),
-    password: Sequelize.STRING,
-    email: Sequelize.STRING(100),
+    username: { type: Sequelize.STRING(50), allowNull: false},
+    password: { type: Sequelize.STRING, allowNull: false},
+    email: { type: Sequelize.STRING(100), allowNull: false},
     rank: Sequelize.TINYINT
   });
 

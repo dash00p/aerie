@@ -32,7 +32,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/new', async function(req, res, next) {
-  res.send(await user.create());
+  let result = await user.create(req.body);
+  req.session.loginStatus = result;
+  res.redirect('../login');
 });
 
 router.get('/:username/comparePassword/:password', async function(req, res, next) {
