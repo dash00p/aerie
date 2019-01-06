@@ -99,6 +99,12 @@ app.get('/logout', function(req, res, next) {
   }
 });
 
+app.post('/timeout', function(req, res, next) {
+  setTimeout(function(){
+    res.send("ok");
+  }, req.body.delay);
+});
+
 return app;
 }
 

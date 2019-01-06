@@ -8,7 +8,7 @@
         </li>
         <% if(typeof isAuthenticated !== 'undefined'){ %>
         <li>
-            Bienvenue <%= user.username.charAt(0).toUpperCase() + user.username.substring(1) %> !
+            <h5>Bienvenue <%= user.username.charAt(0).toUpperCase() + user.username.substring(1) %> !</h5>
         </li>
             <% if(user.rank > 0){ %>
             <li>
@@ -28,10 +28,10 @@
                     <input type="checkbox" class="switch" 
                     <% if(typeof cookies.nightmode !== 'undefined'){ %>checked<% } %> id="switchNightMode">
                     <label for="switchNightMode">
-                        <span>
+                        <a class="utility">
                             <i class="far fa-moon"></i>
                             <%=lng.NIGHT_MODE%>
-                        </span>
+                        </a>
                     </label>
                 </span>
             </div>
@@ -45,5 +45,5 @@
         </li>
     </ul>
 </div>
-<a href="#menu-toggle" class="btn btn-dark mt-2 ml-2" id="menu-toggle"><i class="fas fa-bars"></i></a>
+<a href="#menu-toggle" class="btn btn-dark mt-2 ml-2 fixed utility" id="menu-toggle"><i class="fas fa-bars"></i></a>
 <!-- /#sidebar-wrapper -->

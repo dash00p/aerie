@@ -8,10 +8,11 @@ body {
 
 #wrapper {
   padding-left: 0;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease; }
+  -webkit-transition: all 0.35s ease;
+  -moz-transition: all 0.35s ease;
+  -o-transition: all 0.35s ease;
+  -ms-transition: all 0.35s ease;
+  transition: all 0.35s ease; }
   #wrapper.toggled {
     padding-left: 250px; }
     #wrapper.toggled #sidebar-wrapper {
@@ -27,10 +28,11 @@ body {
   height: 100%;
   overflow-y: auto;
   background: #000;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  -webkit-transition: all 0.35s ease;
+  -moz-transition: all 0.35s ease;
+  -o-transition: all 0.35s ease;
+  -ms-transition: all 0.35s ease;
+  transition: all 0.35s ease;
   overflow-x: hidden; }
 
 #page-content-wrapper {
@@ -53,6 +55,8 @@ body {
       display: block;
       text-decoration: none;
       color: #999999; }
+      .sidebar-nav li a.active {
+        font-weight: 900; }
       .sidebar-nav li a:hover {
         text-decoration: none;
         color: #fff;
@@ -98,6 +102,9 @@ body {
 .no-highlight ::-moz-selection {
   background: none;
   /* Gecko Browsers */ }
+
+.fixed {
+  position: fixed; }
 
 .nightmode {
   background-color: #323232;
@@ -231,5 +238,12 @@ body {
 a {
   color: #2196f3;
   transition: 0.3s ease color; }
+  a.utility:hover {
+    background: none !important;
+    color: #fff !important; }
+
+li:hover a.utility {
+  background: none !important;
+  color: #fff !important; }
 
 /*# sourceMappingURL=style.css.map */

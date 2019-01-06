@@ -1,19 +1,19 @@
+@import "mixin";
 /*!
  * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
  * Copyright 2013-2017 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
 
+ $sidebar-transition: 0.35s;
+ 
  body {
     overflow-x: hidden;
   }
   
   #wrapper {
     padding-left: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    @include prefix(transition, all $sidebar-transition ease, webkit moz o ms);
 
     &.toggled{
         padding-left: 250px;
@@ -36,10 +36,7 @@
     height: 100%;
     overflow-y: auto;
     background: #000;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    @include prefix(transition, all $sidebar-transition ease, webkit moz o ms);
     overflow-x: hidden;
   }
   
@@ -68,6 +65,9 @@
             text-decoration: none;
             color: #999999;
 
+            &.active{
+                font-weight: 900;
+            }
             &:hover {
                 text-decoration: none;
                 color: #fff;

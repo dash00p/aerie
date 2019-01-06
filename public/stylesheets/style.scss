@@ -1,4 +1,4 @@
-@import "sidebar", "utilities", "nightmode", "switch";
+@import "sidebar", "utilities", "nightmode", "switch", "mixin";
 
 body{
     /* Margin bottom by footer height */
@@ -17,4 +17,16 @@ body{
 a{
   color: #2196f3;
   transition: 0.3s ease color;
+
+  &.utility:hover{
+    background: none!important;
+    color: #fff!important;
+  }
+}
+
+li:hover {
+  a.utility{
+    background: none!important;
+    color: #fff!important;
+  }
 }
