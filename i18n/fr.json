@@ -18,5 +18,8 @@
     "USERNAME" : "Pseudo",
     "PASSWORD" : "Mot de passe",
     "CONNECTION" : "Connexion",
-    "INSCRIPTION" : "Inscription"
+    "INSCRIPTION" : "Inscription",
+    "SIGN_IN" : "S'inscrire",
+    "MOUVELIAN_CALENDAR" : "Calendrier mouvélien"
+
 }

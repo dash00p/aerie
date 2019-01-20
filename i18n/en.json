@@ -18,5 +18,7 @@
     "USERNAME" : "Username",
     "PASSWORD" : "Password",
     "CONNECTION" : "Connection",
-    "INSCRIPTION" : "Inscription"
+    "INSCRIPTION" : "Inscription",
+    "SIGN_IN" : "Sign in",
+    "MOUVELIAN_CALENDAR" : "Mouvelian Calendar"
 }

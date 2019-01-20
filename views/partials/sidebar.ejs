@@ -7,15 +7,18 @@
             </a>
         </li>
         <% if(typeof isAuthenticated !== 'undefined'){ %>
-        <li>
-            <h5>Bienvenue <%= user.username.charAt(0).toUpperCase() + user.username.substring(1) %> !</h5>
-        </li>
+            <li>
+                <h5>Bienvenue <%= user.username.charAt(0).toUpperCase() + user.username.substring(1) %> !</h5>
+            </li>
             <% if(user.rank > 0){ %>
             <li>
                 <a href="./registry"><%=lng.REGISTRY_ANEKSI%></a>
             </li>
             <% } %> 
-        <% } %> 
+        <% } %>
+        <li>
+            <a href="https://shoop.aerie.fr" target="_blank"><%=lng.MOUVELIAN_CALENDAR%></a>
+        </li>
         <li>
             <a class="<%=(lang=="fr"?"active":"")%>" href="<%=locals.active%>?clang=fr">Français</a>
         </li>
