@@ -78,11 +78,11 @@ app.use(function(req, res, next) {
 //   next();
 // });
 var indexRouter = require('./routes/index')(router, passport);
-var registryRouter = require('./routes/registry');
+//var registryRouter = require('./routes/registry');
 var usersRouter = require('./routes/user');
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
-app.use('/registry', registryRouter);
+//app.use('/registry', registryRouter);
 
 app.use(function(req, res, next) {
   if(req.session && req.session.passport && typeof req.session.passport != "string")

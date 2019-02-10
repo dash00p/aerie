@@ -1,13 +1,19 @@
+global.jQuery = require("jquery");
+moment = require('moment');
 require('angular');
+require('angular-ui-calendar');
+require('fullcalendar');
 
+var css = require('../stylesheets/master.css');
 // Menu Toggle Script 2
+$ = global.jQuery;
 $(function() {
-    $("#menu-toggle").click(function(e) {
+    $("#menu-toggle").click(e => {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
 
-    $("#switchNightMode").click( e => {
+    $("#switchNightMode").click(() => {
         if($('#switchNightMode').is(':checked')){
             setCookie('nightmode', 1, 365);
         }
@@ -32,7 +38,7 @@ $(function() {
     // });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     //https://christopheraue.net/design/fading-pages-on-load-and-unload
     var anchors = document.getElementsByTagName('a');
 
@@ -40,20 +46,20 @@ document.addEventListener('DOMContentLoaded', function() {
         if (anchors[i].hostname !== window.location.hostname || anchors[i].classList.contains("utility"))
             continue;
         
-        anchors[i].addEventListener('click', function(event) {
+        anchors[i].addEventListener('click', e => {
             $('#wrapper').removeClass("toggled");
             var sidebar = document.getElementById('sidebar-wrapper'),
-            anchor = event.currentTarget;
+            anchor = e.currentTarget;
         
-            var listener = function() {
+            var listener = () => {
                 window.location = anchor.href;
                 sidebar.removeEventListener('transitionend', listener);
             };
             sidebar.addEventListener('transitionend', listener);
             
-            event.preventDefault();
+            e.preventDefault();
         });
     }       
 });
 
-app = angular.module("aerie", []); 
+app = angular.module("aerie", ['ui.calendar']); 
