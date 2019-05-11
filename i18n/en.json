@@ -20,5 +20,7 @@
     "CONNECTION" : "Connection",
     "INSCRIPTION" : "Inscription",
     "SIGN_IN" : "Sign in",
-    "MOUVELIAN_CALENDAR" : "Mouvelian Calendar"
+    "MOUVELIAN_CALENDAR" : "Mouvelian Calendar",
+    "EVENTS" : "Events",
+    "WELCOME" : "Welcome"
 }

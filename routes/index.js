@@ -28,18 +28,7 @@ app.get('/registry', (req, res, next) => {
   if(req.user.rank < 1)
       return res.redirect('/');
   res.render('registry', {
-      title: 'Registry',
-      bot_url: conf.url.bernie,
-    });
-});
-
-app.get('/events', (req, res, next) => {
-  if(!req.isAuthenticated())
-      return res.redirect('login');
-  if(req.user.rank < 1)
-      return res.redirect('/');
-  res.render('events', {
-      title: 'events',
+      title: req.i18n_texts.REGISTRY_ANEKSI,
       bot_url: conf.url.bernie,
     });
 });

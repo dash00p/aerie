@@ -3,6 +3,7 @@ moment = require('moment');
 require('angular');
 require('angular-ui-calendar');
 require('fullcalendar');
+require('fullcalendar/dist/locale/fr');
 
 var css = require('../stylesheets/master.css');
 // Menu Toggle Script 2

@@ -79,9 +79,11 @@ app.use(function(req, res, next) {
 // });
 var indexRouter = require('./routes/index')(router, passport);
 //var registryRouter = require('./routes/registry');
-var usersRouter = require('./routes/user');
+var usersRouter = require('./routes/UserRouter');
+var eventRouter = require('./routes/EventRouter');
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
+app.use('/event', eventRouter);
 //app.use('/registry', registryRouter);
 
 app.use(function(req, res, next) {

@@ -20,6 +20,8 @@
     "CONNECTION" : "Connexion",
     "INSCRIPTION" : "Inscription",
     "SIGN_IN" : "S'inscrire",
-    "MOUVELIAN_CALENDAR" : "Calendrier mouvélien"
+    "MOUVELIAN_CALENDAR" : "Calendrier mouvélien",
+    "EVENTS" : "Evènements",
+    "WELCOME" : "Bienvenue"
 
 }
