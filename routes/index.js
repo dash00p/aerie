@@ -70,6 +70,12 @@ app.get('/logout', function(req, res, next) {
   }
 });
 
+app.get('/mouvelian-calendar', function(req, res, next) {
+  res.render('mouvelian_calendar', {
+    title: req.i18n_texts.MOUVELIAN_CALENDAR
+  })
+});
+
 app.post('/timeout', function(req, res, next) {
   setTimeout(function(){
     res.send("ok");

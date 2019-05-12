@@ -1,0 +1,30 @@
+<%- contentFor('style') %>
+<link rel="stylesheet" href="/stylesheets/mouvelian_calendar.css">
+
+<%- contentFor('body') %>
+  <section id="home">
+    <h1>
+      <%=lng.MOUVELIAN_CALENDAR%>
+    </h1>
+    <p>Date du jour : <span id="moment"></span> </p>
+    <p>Sélectionner une date à convertir :
+      <div class="form-inline jc"><input type="text" id="dateInput" class="form-control ml-1" /></div>
+      <div class="form-inline jc">
+        <input class="form-check-input ml-1" type="checkbox" id="winterCheck" checked="checked" />
+        <label class="form-check-label" for="winterCheck">Séparer la semaine d'Hivernel</label>
+        <input class="form-check-input ml-1" type="checkbox" id="mouvelianCheck" />
+        <label class="form-check-label" for="mouvelianCheck">Date au format mouvélien</label>
+      </div>
+    </p>
+    <p><span id="inputResult">&nbsp;</span></p>
+    <p><span id="duration">&nbsp;</span></p>
+  </section>
+<figure id="kryta">
+  <img src="/images/kryta-banner-small.png" data-toggle="tooltip" data-placement="right" title="Changer de langue" />
+</figure>
+<!-- <script src="js/vendor/i18n/datepicker.fr.js?v=1"></script> -->
+<!-- <script src="js/plugins.js?v=1"></script> -->
+<%- contentFor('script') %>
+<script src="/javascripts/vendor/datepicker.min.js"></script>
+<script src="/javascripts/mouvelian.js"></script>
+<script src="/javascripts/mouvelian_locales.js"></script>
