@@ -1,71 +1,30 @@
-<!doctype html>
-<html class="no-js" lang="">
+<%- contentFor('style') %>
+<link rel="stylesheet" href="/stylesheets/mouvelian_calendar.css">
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title></title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
-  <link rel="icon" href="favicon.ico?v=1">
-
-  <link rel="stylesheet" href="css/bootstrap.min.css?v=1">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/datepicker.min.css?v=2">
-  <link rel="stylesheet" href="css/timeline.theme.dark.css?v=1">
-
-  <link rel="stylesheet" href="css/main.css?v=5">
-</head>
-
-<body>
-  <!--[if lte IE 9]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-    <![endif]-->
-
-    <!-- Add your site or application content here -->
-    <div class="container">
-      <section id="home">
-        <h1>Calendrier mouvélien</h1>
-        <p>Date du jour : <span id="moment"></span> </p>
-        <p >Sélectionner une date à convertir :
-          <div class="form-inline jc"><input type="text" id="dateInput" class="form-control ml-1" /></div>
-          <div class="form-inline jc">
-          <input class="form-check-input ml-1" type="checkbox" id="winterCheck" checked="checked" />
-          <label class="form-check-label" for="winterCheck">Séparer la semaine d'Hivernel</label>
-          <input class="form-check-input ml-1" type="checkbox" id="mouvelianCheck" />
-          <label class="form-check-label" for="mouvelianCheck">Date au format mouvélien</label>
-          </div>
-        </p>
-        <p><span id="inputResult">&nbsp;</span></p>
-        <p><span id="duration">&nbsp;</span></p>
-      </section>
-    </div>
-    <figure id="kryta">
-      <img src="img/kryta-banner-small.png" data-toggle="tooltip" data-placement="right" title="Changer de langue"  />       
-    </figure>
-    <script src="js/vendor/modernizr-3.6.0.min.js?v=1"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js?v=1"><\/script>')</script>
-    <script src="js/vendor/moment.min.js?v=1"></script>
-    <script src="js/vendor/moment-locale/fr.js" charset="UTF-8"></script>
-    <script src="js/vendor/bootstrap.bundle.min.js"></script>
-    <script src="js/vendor/datepicker.min.js"></script>
-    <script src="js/vendor/i18n/datepicker.fr.js?v=1"></script>
-    <script src="js/vendor/timeline.min.js?v=1"></script>
-    <script src="js/plugins.js?v=1"></script>
-    <script src="js/main.js?v=6"></script>
-    <script src="js/locales.js?v=1"></script>
-
-    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-<!--   <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async defer></script> -->
-</body>
-
-</html>
+<%- contentFor('body') %>
+  <section id="home">
+    <h1>
+      <%=lng.MOUVELIAN_CALENDAR%>
+    </h1>
+    <p>Date du jour : <span id="moment"></span> </p>
+    <p>Sélectionner une date à convertir :
+      <div class="form-inline jc"><input type="text" id="dateInput" class="form-control ml-1" /></div>
+      <div class="form-inline jc">
+        <input class="form-check-input ml-1" type="checkbox" id="winterCheck" checked="checked" />
+        <label class="form-check-label" for="winterCheck">Séparer la semaine d'Hivernel</label>
+        <input class="form-check-input ml-1" type="checkbox" id="mouvelianCheck" />
+        <label class="form-check-label" for="mouvelianCheck">Date au format mouvélien</label>
+      </div>
+    </p>
+    <p><span id="inputResult">&nbsp;</span></p>
+    <p><span id="duration">&nbsp;</span></p>
+  </section>
+<figure id="kryta">
+  <img src="/images/kryta-banner-small.png" data-toggle="tooltip" data-placement="right" title="Changer de langue" />
+</figure>
+<!-- <script src="js/vendor/i18n/datepicker.fr.js?v=1"></script> -->
+<!-- <script src="js/plugins.js?v=1"></script> -->
+<%- contentFor('script') %>
+<script src="/javascripts/vendor/datepicker.min.js"></script>
+<script src="/javascripts/mouvelian.js"></script>
+<script src="/javascripts/mouvelian_locales.js"></script>

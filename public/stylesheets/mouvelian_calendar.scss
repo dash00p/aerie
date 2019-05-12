@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css?family=Kalam');
+@font-face {
+    font-family: 'New Krytan';
+    src: url('../fonts/new_krytan-webfont.woff2') format('woff2'),
+         url('../fonts/new_krytan-webfont.woff') format('woff'),
+         url('../fonts/new_krytan-webfont.ttf')  format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body{
+    background: url(../images/bg-7.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    color : #eee;
+    font-family: 'Kalam', cursive; 
+
+    &.kryta .container{
+        font-family: 'New Krytan' !important;
+        -webkit-animation: changeOpacity 1s; 
+        animation: changeOpacity 1s; 
+    }
+
+    &:before{
+        content:'';
+        position: fixed;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background:rgba(0,0,0,0.35);
+        z-index: 0;
+    }
+
+}
+
+.container{
+    position: relative;
+    -webkit-animation: initOpacity 1s; 
+    animation: initOpacity 1s; 
+}
+
+#home {
+  padding: 3rem 1.5rem 2rem;
+  text-align: center;
+}
+
+#kryta{
+    position: fixed;
+    top: 3px;
+    right: 3px;
+    cursor: pointer;
+}
+
+.jc{
+    justify-content: center;
+}
+
+@-webkit-keyframes changeOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes changeOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes initOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes initOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.date-picker.dark{
+    &, .datepicker--pointer{
+        background: #111317;
+        border-color: #242930;      
+    }
+
+    .datepicker--nav, .datepicker--content{
+        color: #fff;       
+    }
+
+    .datepicker--day-name{
+        color: #12de36;      
+    }
+
+    .datepicker--cell.-focus-{
+        background: rgba(77, 183, 82, 0.6392156862745098);
+    }
+}
