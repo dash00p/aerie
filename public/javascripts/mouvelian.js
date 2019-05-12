@@ -5,7 +5,7 @@ let mouvelianCheck = false;
 let now, datepicker;
 
 $(function() {
-	//moment.locale('fr');
+	moment.locale('fr');
 	now = moment().subtract(diffYears, 'year');
 
 	$('[data-toggle="tooltip"]').tooltip();

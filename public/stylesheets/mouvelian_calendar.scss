@@ -14,8 +14,6 @@ body{
     background-attachment: fixed;
     background-size: cover;
     color : #eee;
-    font-family: 'Kalam', cursive; 
-
     &.kryta .container{
         font-family: 'New Krytan' !important;
         -webkit-animation: changeOpacity 1s; 
@@ -39,6 +37,7 @@ body{
     position: relative;
     -webkit-animation: initOpacity 1s; 
     animation: initOpacity 1s; 
+    font-family: 'Kalam', cursive; 
 }
 
 #home {
@@ -93,7 +92,7 @@ body{
     }
 }
 
-.date-picker.dark{
+.datepicker.dark{
     &, .datepicker--pointer{
         background: #111317;
         border-color: #242930;      

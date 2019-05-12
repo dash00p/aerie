@@ -9,8 +9,7 @@ body {
   background: url(../images/bg-7.jpg);
   background-attachment: fixed;
   background-size: cover;
-  color: #eee;
-  font-family: 'Kalam', cursive; }
+  color: #eee; }
   body.kryta .container {
     font-family: 'New Krytan' !important;
     -webkit-animation: changeOpacity 1s;
@@ -28,7 +27,8 @@ body {
 .container {
   position: relative;
   -webkit-animation: initOpacity 1s;
-  animation: initOpacity 1s; }
+  animation: initOpacity 1s;
+  font-family: 'Kalam', cursive; }
 
 #home {
   padding: 3rem 1.5rem 2rem;
@@ -67,17 +67,17 @@ body {
   100% {
     opacity: 1; } }
 
-.date-picker.dark, .date-picker.dark .datepicker--pointer {
+.datepicker.dark, .datepicker.dark .datepicker--pointer {
   background: #111317;
   border-color: #242930; }
 
-.date-picker.dark .datepicker--nav, .date-picker.dark .datepicker--content {
+.datepicker.dark .datepicker--nav, .datepicker.dark .datepicker--content {
   color: #fff; }
 
-.date-picker.dark .datepicker--day-name {
+.datepicker.dark .datepicker--day-name {
   color: #12de36; }
 
-.date-picker.dark .datepicker--cell.-focus- {
+.datepicker.dark .datepicker--cell.-focus- {
   background: rgba(77, 183, 82, 0.639216); }
 
 /*# sourceMappingURL=mouvelian_calendar.css.map */
