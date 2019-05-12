@@ -69,6 +69,7 @@ app.use(function(req, res, next) {
     res.locals.user = req.user = JSON.parse(req.session.passport).user;
     res.locals.isAuthenticated = true;
   }
+  res.locals.version = conf.version;
   res.locals.cookies = req.cookies;
   next();
 });
