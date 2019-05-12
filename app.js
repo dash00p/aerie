@@ -12,7 +12,7 @@ var i18n = require("i18n-express");
 var passport = require('passport');
 var conf = require('./conf');
 
-require('./controller/passport')(passport); // pass passport for configuration
+require('./controller/PassportController')(passport); // pass passport for configuration
 
 var app = express();
 //var flash    = require('connect-flash');
