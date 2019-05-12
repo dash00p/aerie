@@ -41,4 +41,12 @@
     .shadow{
         box-shadow:0 0.5rem 1rem rgba(255, 255, 255, 0.04)!important;
     }
+    
+    .fc-unthemed td.fc-today{
+        background:#5f5f5f;
+    }
+
+    .fc-unthemed .fc-content, .fc-unthemed .fc-divider, .fc-unthemed .fc-list-heading td, .fc-unthemed .fc-list-view, .fc-unthemed .fc-popover, .fc-unthemed .fc-row, .fc-unthemed tbody, .fc-unthemed td, .fc-unthemed th, .fc-unthemed thead{
+        border-color: #4b4b4b;
+    }
 }

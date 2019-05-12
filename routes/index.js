@@ -1,34 +1,13 @@
-//const passport = require('passport');
 const conf = require('../conf');
-// var passport = require('passort'),
-//     LocalStrategy = require('passport-local').Strategy;
-
-// passport.use(new LocalStrategy(
-//   function(username, password, done) {
-//     User.findOne({ username: username }, function (err, user) {
-//       if (err) { return done(err); }
-//       if (!user) {
-//         return done(null, false, { message: 'Incorrect username.' });
-//       }
-//       if (!user.validPassword(password)) {
-//         return done(null, false, { message: 'Incorrect password.' });
-//       }
-//       return done(null, user);
-//     });
-//   }
-// ));
 module.exports = (app, passport) => {
-/* GET home page. */
 app.get('/', function(req, res, next) {
   res.render('index', {
     title: 'Les tests de Bernie',
-    message: ''//req.flash('loginMessage')
-    //current_url : req.baseUrl
+    message: ''
   });
 });
 
 app.get('/login', function(req, res, next) {
-  
   message = "";
   if(req.session && req.session.loginStatus){
     message = req.session.loginStatus.message;
@@ -39,15 +18,22 @@ app.get('/login', function(req, res, next) {
     return res.redirect('registry');
   res.render('login', {
     title: 'Connexion',
-    message: message//req.flash('loginMessage')
+    message: message
   });
 });
 
-// router.post('/login', passport.authenticate('local-login', {
-//   successRedirect : '/registry', // redirect to the secure profile section
-//   failureRedirect : '/login', // redirect back to the signup page if there is an error
-//   failureFlash : true // allow flash messages
-// }));
+app.get('/registry', (req, res, next) => {
+  if(!req.isAuthenticated())
+      return res.redirect('login');
+  if(req.user.rank < 1)
+      return res.redirect('/');
+  res.render('registry', {
+      title: req.i18n_texts.REGISTRY_ANEKSI,
+      bot_url: conf.url.bernie,
+    });
+});
+
+/* API CALLS*/
 app.post('/login', function(req, res, next) {
   passport.authenticate('local-login', function(err, user, message) {
     if (req.isAuthenticated()) {
@@ -72,22 +58,7 @@ app.post('/login', function(req, res, next) {
       req.session.passport = JSON.stringify(req.session.passport);
       req.session.save( function(err){
         res.redirect('/registry');
-      });
-      // let passport = req.session.passport;
-      // req.session.regenerate(function(err) {
-      //   // session saved
-      //   if(err)
-      //     return console.log(err);
-
-      //   let username = user.username;
-      //   req.session.username = username;
-      //   req.session.email = user.email;
-      //   req.session.verified = user.verified;
-      //   req.session.connected = true;
-      //   req.session.passport = passport;
-      //   return res.redirect('/someURL');
-      // })
-      
+      }); 
     });
   })(req, res, next);
 });

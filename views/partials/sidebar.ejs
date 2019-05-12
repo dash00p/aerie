@@ -8,11 +8,14 @@
         </li>
         <% if(typeof isAuthenticated !== 'undefined'){ %>
             <li>
-                <h5>Bienvenue <%= user.username.charAt(0).toUpperCase() + user.username.substring(1) %> !</h5>
+                <h5><%=lng.WELCOME%> <%= user.username.charAt(0).toUpperCase() + user.username.substring(1) %> !</h5>
             </li>
             <% if(user.rank > 0){ %>
             <li>
                 <a href="./registry"><%=lng.REGISTRY_ANEKSI%></a>
+            </li>
+            <li>
+                <a href="./event"><%=lng.EVENTS%></a>
             </li>
             <% } %> 
         <% } %>
