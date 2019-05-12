@@ -3,6 +3,21 @@
     "MESSAGE_EDITED" : {
         "SUCCESS" : "Message édité avec succès !"
     },
+    "ACTIONS": {
+        "CLOSE" : "Fermer",
+        "MODIFY" : "Modifier",
+        "CREATE" : "Créer",
+        "DELETE" : "Supprimer"
+    },
+    "STATES": {
+        "DELETED" : "supprimé",
+        "MODIFIED" : "modifié",
+        "CREATED" : "créé"       
+    },
+    "BEGIN" : "Début",
+    "END" : "Fin",
+    "TITLE" : "Titre",
+    "DESCRIPTION" : "Description",
     "UPDATE_CHARACTER_SHEET" : "Mettre à jour la fiche de personnage",
     "REGISTRY_ANEKSI" : "Registre du Clan Al Aneksi",
     "CHANNEL_NAME" : "Nom du canal",
@@ -20,6 +35,8 @@
     "CONNECTION" : "Connexion",
     "INSCRIPTION" : "Inscription",
     "SIGN_IN" : "S'inscrire",
-    "MOUVELIAN_CALENDAR" : "Calendrier mouvélien"
-
+    "MOUVELIAN_CALENDAR" : "Calendrier mouvélien",
+    "AN_EVENT" : "un évènement",
+    "EVENTS" : "Évènements",
+    "WELCOME" : "Bienvenue"
 }

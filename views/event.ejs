@@ -1,0 +1,53 @@
+<h1>
+    WIP - <%= lng.EVENTS %>
+</h1>
+<section ng-controller="eventCtrl as eVm">
+    <div id="calendar" ui-calendar="eVm.uiConfig.calendar" ng-model="eVm.eventSources"></div>
+    <div id="newEventModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" ng-show="!eVm.editEvent"><%= lng.ACTIONS.CREATE+' '+lng.AN_EVENT %></h5>
+                    <h5 class="modal-title" ng-show="eVm.editEvent"><%= lng.ACTIONS.MODIFY+' '+lng.AN_EVENT %></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="title"><%= lng.TITLE %></label>
+                        <input type="text" class="form-control" id="title" ng-model="eVm.newEvent.title">
+                    </div>
+                    <div class="form-group">
+                        <label for="description"><%= lng.DESCRIPTION %></label>
+                        <textarea class="form-control" id="description" ng-model="eVm.newEvent.description">
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateStart"><%= lng.BEGIN %></label>
+                        <input type="datetime-local" class="form-control" id="dateStart" ng-model="eVm.newEvent.start">
+                    </div>
+                    <div class="form-group">
+                        <label for="dateEnd"><%= lng.END %></label>
+                        <input type="datetime-local" class="form-control" id="dateEnd" ng-model="eVm.newEvent.end">
+                    </div>
+                    <p ng-show="eVm.newEvent.error" class="alert alert-danger">
+                        {{eVm.newEvent.error.message}}
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" ng-show="eVm.editEvent"
+                        ng-click="eVm.deleteEvent()"><%= lng.ACTIONS.DELETE %></button>
+                    <button type="button" class="btn btn-primary" ng-show="!eVm.editEvent"
+                        ng-click="eVm.saveEvent()"><%= lng.ACTIONS.CREATE %></button>
+                    <button type="button" class="btn btn-primary" ng-show="eVm.editEvent"
+                        ng-click="eVm.saveEvent()"><%= lng.ACTIONS.MODIFY %></button>
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal"><%= lng.ACTIONS.CLOSE %></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<%- contentFor('script') %>
+<script src="/javascripts/events.js"></script>
