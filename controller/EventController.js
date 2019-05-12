@@ -18,7 +18,7 @@ const modelToObject = event => {
 const ObjetToModel = event => {
     return {
         title : event.title,
-        description : '',
+        description : event.description,
         start: moment(event.start).format("Y-MM-DD HH:mm:SS"),
         end: moment(event.end).format("Y-MM-DD HH:mm:SS"),
         type: 1
@@ -39,6 +39,9 @@ const EventController = {
     },
     update : async event => {
         return result = await model.update(ObjetToModel(event), {where:{id: event.id}});
+    },
+    remove : async id => {
+        return result = await model.destroy({where:{id: id}});
     }
 }
 

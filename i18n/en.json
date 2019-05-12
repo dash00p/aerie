@@ -3,6 +3,21 @@
     "MESSAGE_EDITED" : {
         "SUCCESS" : "Message successfully edited !"
     },
+    "ACTIONS": {
+        "CLOSE" : "Close",
+        "MODIFY" : "Modify",
+        "CREATE" : "Create",
+        "DELETE" : "Delete"
+    },
+    "STATES": {
+        "DELETED" : "deleted",
+        "MODIFIED" : "modified",
+        "CREATED" : "created"       
+    },
+    "BEGIN" : "Begin",
+    "END" : "End",
+    "TITLE" : "Title",
+    "DESCRIPTION" : "Description",
     "UPDATE_CHARACTER_SHEET" : "Update the character sheet",
     "REGISTRY_ANEKSI" : "Registry of Al Aneksi Clan",
     "CHANNEL_NAME" : "Channel name",
@@ -21,6 +36,7 @@
     "INSCRIPTION" : "Inscription",
     "SIGN_IN" : "Sign in",
     "MOUVELIAN_CALENDAR" : "Mouvelian Calendar",
+    "AN_EVENT" : "an event",
     "EVENTS" : "Events",
     "WELCOME" : "Welcome"
 }

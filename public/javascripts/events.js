@@ -37,16 +37,53 @@ function eventCtrl($http) {
     // });
 
     vm.saveEvent = () => {
+        if(!vm.checkEventCoherence(vm.newEvent))
+            return;
+
         if(vm.editEvent){
             $http.patch(`/event`, {event: vm.newEvent}).then( res => {
-
+                $('#newEventModal').modal('hide');
+                $('#calendar').fullCalendar('removeEvents', vm.newEvent.id);
+                $('#calendar').fullCalendar('renderEvent', res.data);
             });
         }
         else{
             $http.post(`/event`, {newEvent : vm.newEvent}).then(res => {
-                //$('#calendar').fullCalendar('renderEvent', event);
+                $('#calendar').fullCalendar('renderEvent', res.data);
+                //$('#calendar').fullCalendar('refetchEvents');
+                $('#newEventModal').modal('hide');
             });
         }
+    }
+
+    vm.deleteEvent = () => {
+        var confirm = window.confirm('Êtes-vous sûr de supprimer cet évènement ?');
+        if(!confirm)//Abort
+            return;
+        $http.delete(`/event`, {params:{eventId : vm.newEvent.id}}).then( res => {
+            console.log(res.data.removedEvent+" Event removed");
+            //$('#calendar').fullCalendar('refetchEvents');
+            $('#calendar').fullCalendar('removeEvents', vm.newEvent.id)
+            $('#newEventModal').modal('hide');
+        });
+    }
+
+    vm.checkEventCoherence = event => {
+        if(moment(event.start).isSameOrAfter(moment(event.end))){
+            vm.newEvent.error = {
+                message:"La date de fin doit être supérieure à celle du début de l'évènement."
+            }
+            return false;
+        }
+
+        if(!event.title || event.title === ""){
+            vm.newEvent.error = {
+                message:"Le titre est obligatoire."
+            }
+            return false;
+        }
+
+        return true;
     }
 
     vm.uiConfig = {
@@ -79,6 +116,8 @@ function eventCtrl($http) {
         select: function (start, end, jsEvent, view) {
             vm.newEvent.start = start.local().toDate();
             vm.newEvent.end = end.local().toDate();
+            vm.newEvent.title = "";
+            vm.newEvent.description = "";
             vm.editEvent = false;
             $('#newEventModal').modal();
             return;
@@ -100,10 +139,21 @@ function eventCtrl($http) {
             vm.editEvent = true;
             vm.newEvent = vm.calendarToEvent(calEvent);
             $('#newEventModal').modal();
+        },
+        eventRender: function( event, element, view ) {
+            if(event.description !== ""){
+                $(element).tooltip({
+                    title: event.description
+                });
+            }
+        },
+        eventMouseover: function( event, jsEvent, view ) {
+
         }
     }
     };
 
+    //Probably useless
     vm.renderCalender = function(calendar) {
         if(uiCalendarConfig.calendars[calendar]){
           uiCalendarConfig.calendars[calendar].fullCalendar('render');
