@@ -1,8 +1,8 @@
 const conf = require('../conf');
-module.exports = (app, passport) => {
+const utils = require('../utils');
 app.get('/', function(req, res, next) {
   res.render('index', {
-    title: 'Les tests de Bernie',
+    title: 'Aerie',
     message: ''
   });
 });
@@ -17,7 +17,7 @@ app.get('/login', function(req, res, next) {
   if(req.isAuthenticated())
     return res.redirect('registry');
   res.render('login', {
-    title: 'Connexion',
+    title: utils.setPagetitle(req.i18n_texts.CONNECTION),
     message: message
   });
 });
@@ -28,7 +28,7 @@ app.get('/registry', (req, res, next) => {
   if(req.user.rank < 1)
       return res.redirect('/');
   res.render('registry', {
-      title: req.i18n_texts.REGISTRY_ANEKSI,
+      title: utils.setPagetitle(req.i18n_texts.REGISTRY_ANEKSI),
       bot_url: conf.url.bernie,
     });
 });
@@ -72,7 +72,7 @@ app.get('/logout', function(req, res, next) {
 
 app.get('/mouvelian-calendar', function(req, res, next) {
   res.render('mouvelian_calendar', {
-    title: req.i18n_texts.MOUVELIAN_CALENDAR
+    title: utils.setPagetitle(req.i18n_texts.MOUVELIAN_CALENDAR)
   })
 });
 
