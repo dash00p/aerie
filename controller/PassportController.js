@@ -1,29 +1,24 @@
-// config/passport.js
-
-// load all the things we need
-var LocalStrategy   = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
-  
-// load up the user model
-var User = require('../model/UserModel');
-// expose this function to our app using module.exports
-module.exports = passport = function(passportParam) {
-    passport.passportRef = passportParam;
-	// =========================================================================
+const passport = require('passport');
+const LocalStrategy  = require('passport-local').Strategy;
+const User = require('../model/UserModel');
+
+
+    // =========================================================================
     // passport session setup ==================================================
     // =========================================================================
     // required for persistent login sessions
     // passport needs ability to serialize and unserialize users out of session
 
     // used to serialize the user for the session
-    passport.passportRef.serializeUser(function(user, done) {
+    passport.serializeUser(function(user, done) {
         done(null, user);
     });
 
     // used to deserialize the user
-    passport.passportRef.deserializeUser(function(id, done) {
-        User.findById(id, function(user) {
-            done(user);
+    passport.deserializeUser(function(user, done) {
+        User.findById(user.id, function(result) {
+            done(result);
         });
     });
 
@@ -33,7 +28,7 @@ module.exports = passport = function(passportParam) {
     // we are using named strategies since we have one for login and one for signup
     // by default, if there was no name, it would just be called 'local'
 
-    passport.passportRef.use('local-login', new LocalStrategy({
+    passport.use('local-login', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'username',
         passwordField : 'password',
@@ -64,4 +59,4 @@ module.exports = passport = function(passportParam) {
 
     }));
 
-};
+module.exports = passport;

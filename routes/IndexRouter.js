@@ -1,13 +1,17 @@
+const express = require('express');
+const router = express.Router();
 const conf = require('../conf');
 const utils = require('../utils');
-app.get('/', function(req, res, next) {
+const passport = require('../controller/PassportController');
+
+router.get('/', function(req, res, next) {
   res.render('index', {
     title: 'Aerie',
     message: ''
   });
 });
 
-app.get('/login', function(req, res, next) {
+router.get('/login', function(req, res, next) {
   message = "";
   if(req.session && req.session.loginStatus){
     message = req.session.loginStatus.message;
@@ -22,7 +26,7 @@ app.get('/login', function(req, res, next) {
   });
 });
 
-app.get('/registry', (req, res, next) => {
+router.get('/registry', (req, res, next) => {
   if(!req.isAuthenticated())
       return res.redirect('login');
   if(req.user.rank < 1)
@@ -34,16 +38,16 @@ app.get('/registry', (req, res, next) => {
 });
 
 /* API CALLS*/
-app.post('/login', function(req, res, next) {
+router.post('/login', function(req, res, next) {
   passport.authenticate('local-login', function(err, user, message) {
     if (req.isAuthenticated()) {
       return res.redirect('/');
     }
-
+  
     if (err) {
         return next(err);
     }
-
+  
     if (!user) {
       if(!message.text)
         message = { text: message.message, type:'danger'};
@@ -52,7 +56,7 @@ app.post('/login', function(req, res, next) {
         message: message
       });
   }
-
+  
     req.logIn(user, { session: true }, function(err) {
       if (err) { return next(err); }
       req.session.passport = JSON.stringify(req.session.passport);
@@ -63,28 +67,23 @@ app.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
-app.get('/logout', function(req, res, next) {
+router.get('/logout', function(req, res, next) {
   if(req.isAuthenticated()){
     req.session.destroy();
     return res.redirect('/');
   }
 });
 
-app.get('/mouvelian-calendar', function(req, res, next) {
+router.get('/mouvelian-calendar', function(req, res, next) {
   res.render('mouvelian_calendar', {
     title: utils.setPagetitle(req.i18n_texts.MOUVELIAN_CALENDAR)
   })
 });
 
-app.post('/timeout', function(req, res, next) {
+router.post('/timeout', function(req, res, next) {
   setTimeout(function(){
     res.send("ok");
   }, req.body.delay);
 });
 
-return app;
-}
-
-
-
-
+module.exports = router;
