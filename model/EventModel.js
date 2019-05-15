@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
 const conf = require('../conf');
+const express= require('express');
+const app = express();
 
 const sequelize = new Sequelize(conf.db.name, conf.db.username, conf.db.password, {
     host: conf.db.host,
@@ -27,7 +29,7 @@ const model = sequelize.define('event', {
     type : Sequelize.TINYINT
   });
 
-if(!conf.isProd)
+if(app.get('env') === 'development')
   model.sync();
   
 module.exports = model;

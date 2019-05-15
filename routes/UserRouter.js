@@ -9,8 +9,20 @@ router.get('/', function(req, res, next) {
 
 router.post('/new', async function(req, res, next) {
   let result = await user.create(req.body);
-  req.session.loginStatus = result;
-  res.redirect('../login');
+  if(result.success){
+    req.logIn(result.user, { session: true }, function(err) {
+      if (err) { return next(err); }
+      req.session.passport = JSON.stringify(req.session.passport);
+      req.session.save( function(err){
+        req.session.newAccount = true;
+        return res.redirect('/profile');
+      }); 
+    });
+  }
+  else{
+    req.session.loginStatus = result;
+    res.redirect('../login');
+  }
 });
 
 router.get('/:username/comparePassword/:password', async function(req, res, next) {

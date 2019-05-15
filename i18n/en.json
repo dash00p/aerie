@@ -38,5 +38,7 @@
     "MOUVELIAN_CALENDAR" : "Mouvelian Calendar",
     "AN_EVENT" : "an event",
     "EVENTS" : "Events",
-    "WELCOME" : "Welcome"
+    "WELCOME" : "Welcome",
+    "WRONG_PASSWORD" : "Oops! Wrong password.",
+    "PROFILE" : "Profile"
 }

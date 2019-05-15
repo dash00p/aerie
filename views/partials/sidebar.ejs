@@ -7,17 +7,20 @@
             </a>
         </li>
         <% if(typeof isAuthenticated !== 'undefined'){ %>
-            <li>
-                <h5><%=lng.WELCOME%> <%= user.username.charAt(0).toUpperCase() + user.username.substring(1) %> !</h5>
-            </li>
-            <% if(user.rank > 0){ %>
-            <li>
-                <a href="./registry"><%=lng.REGISTRY_ANEKSI%></a>
-            </li>
-            <li>
-                <a href="./event"><%=lng.EVENTS%></a>
-            </li>
-            <% } %> 
+        <li>
+            <h5>
+                <a href="./profile"><%=lng.WELCOME%>
+                    <%= user.username.charAt(0).toUpperCase() + user.username.substring(1) %> !</a>
+            </h5>
+        </li>
+        <% if(user.rank > 0){ %>
+        <li>
+            <a href="./registry"><%=lng.REGISTRY_ANEKSI%></a>
+        </li>
+        <li>
+            <a href="./event"><%=lng.EVENTS%></a>
+        </li>
+        <% } %>
         <% } %>
         <li>
             <a href="./mouvelian-calendar"><%=lng.MOUVELIAN_CALENDAR%></a>
@@ -29,10 +32,10 @@
             <a class="<%=(lang=="en"?"active":"")%>" href="<%=locals.active%>?clang=en">English</a>
         </li>
         <li>
-            <div class="form-group">  
+            <div class="form-group">
                 <span class="switch switch-sm">
-                    <input type="checkbox" class="switch" 
-                    <% if(typeof cookies.nightmode !== 'undefined'){ %>checked<% } %> id="switchNightMode">
+                    <input type="checkbox" class="switch"
+                        <% if(typeof cookies.nightmode !== 'undefined'){ %>checked<% } %> id="switchNightMode">
                     <label for="switchNightMode">
                         <a class="utility">
                             <i class="far fa-moon"></i>
@@ -44,9 +47,9 @@
         </li>
         <li>
             <% if(typeof isAuthenticated !== 'undefined'){ %>
-                <a href="./logout"><%=lng.LOG_OUT%></a>
+            <a href="./logout"><%=lng.LOG_OUT%></a>
             <% } else { %>
-                <a href="./login"><%=lng.LOG_IN%></a>
+            <a href="./login"><%=lng.LOG_IN%></a>
             <% } %>
         </li>
     </ul>

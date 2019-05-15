@@ -3,6 +3,7 @@ const router = express.Router();
 const conf = require('../conf');
 const utils = require('../utils');
 const passport = require('../controller/PassportController');
+const user = require('../controller/UserController');
 
 router.get('/', function(req, res, next) {
   res.render('index', {
@@ -29,12 +30,63 @@ router.get('/login', function(req, res, next) {
 router.get('/registry', (req, res, next) => {
   if(!req.isAuthenticated())
       return res.redirect('login');
-  if(req.user.rank < 1)
+  if(req.user.rank > 2)
       return res.redirect('/');
   res.render('registry', {
       title: utils.setPagetitle(req.i18n_texts.REGISTRY_ANEKSI),
       bot_url: conf.url.bernie,
     });
+});
+
+router.get('/logout', function(req, res, next) {
+  if(req.isAuthenticated()){
+    req.session.destroy();
+    return res.redirect('/');
+  }
+});
+
+router.get('/mouvelian-calendar', function(req, res, next) {
+  res.render('mouvelian_calendar', {
+    title: utils.setPagetitle(req.i18n_texts.MOUVELIAN_CALENDAR)
+  });
+});
+
+router.get('/profile', function(req, res, next) {
+  if(!req.isAuthenticated())
+    return res.redirect('login');
+
+  let message = "";
+  if(req.session.newAccount){
+    message = {
+      type: "success",
+      text: "Compte créé avec succès !"
+    }
+    delete req.session.newAccount;
+  }
+
+  res.render('profile', {
+    title: utils.setPagetitle(req.i18n_texts.PROFILE),
+    profile: req.user,
+    message: message
+  })
+});
+
+router.get('/profile/:id', async function(req, res, next) {
+  if(!req.isAuthenticated())
+    return res.redirect('/login');
+
+    let id = parseInt(req.params.id);
+    if(!id || isNaN(id))
+      res.redirect('/profile');
+
+  let profile = await user.find(id);
+  if(profile === null)
+    return res.redirect('/profile');
+
+  res.render('profile', {
+    title: utils.setPagetitle(req.i18n_texts.PROFILE),
+    profile: profile
+  })
 });
 
 /* API CALLS*/
@@ -55,7 +107,7 @@ router.post('/login', function(req, res, next) {
         title: 'Connexion',
         message: message
       });
-  }
+    }
   
     req.logIn(user, { session: true }, function(err) {
       if (err) { return next(err); }
@@ -65,19 +117,6 @@ router.post('/login', function(req, res, next) {
       }); 
     });
   })(req, res, next);
-});
-
-router.get('/logout', function(req, res, next) {
-  if(req.isAuthenticated()){
-    req.session.destroy();
-    return res.redirect('/');
-  }
-});
-
-router.get('/mouvelian-calendar', function(req, res, next) {
-  res.render('mouvelian_calendar', {
-    title: utils.setPagetitle(req.i18n_texts.MOUVELIAN_CALENDAR)
-  })
 });
 
 router.post('/timeout', function(req, res, next) {

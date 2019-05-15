@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy  = require('passport-local').Strategy;
 const User = require('../model/UserModel');
+const Sequelize = require('sequelize');
 
 
     // =========================================================================
@@ -44,9 +45,13 @@ const User = require('../model/UserModel');
                 return done(null, false, {text:'No user found.', type:'danger'}); // req.flash is the way to set flashdata using connect-flash
 
             // if the user is found but the password is wrong
-            bcrypt.compare(password, user.password).then(match => {
+            bcrypt.compare(password, user.password).then( async match => {
                 if (!match)
-                    return done(null, false, {text:'Oops! Wrong password.', type:'danger'}); // create the loginMessage and save it to session as flashdata
+                    return done(null, false, {text: req.i18n_texts.WRONG_PASSWORD, type:'danger'}); // create the loginMessage and save it to session as flashdata
+
+                await User.update({loggedAt : Sequelize.literal('CURRENT_TIMESTAMP')}, {where:{id: user.id}});
+                //TODO
+                //user.loggedAt =  Sequelize.literal('CURRENT_TIMESTAMP');
 
                 // all is well, return successful user
                 return done(null, user);

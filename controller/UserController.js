@@ -12,7 +12,7 @@ const UserController = {
       where: {[Op.or]: [
       { username: user.sub_username },
       { email: user.sub_email }]},
-      defaults: { username : user.sub_username, email : user.sub_email, password : hash, rank: 0 }});
+      defaults: { username : user.sub_username, email : user.sub_email, password : hash, rank: 20 }});
 
     let isCreated =  result[result.length-1];
     if(!isCreated){
@@ -28,6 +28,7 @@ const UserController = {
     }
     else{
       response.success = true;
+      response.user = result[0];
       response.message.type = "success";
       response.message.text = "Compte créé avec succès !";
     }
@@ -38,6 +39,10 @@ const UserController = {
     const user = await User.findOne({ where: {username: username}});
 
     return match = await bcrypt.compare(password, user.password);
+  },
+  find : async id => {
+    user = await User.findById(id);
+    return user;
   }
 }
 

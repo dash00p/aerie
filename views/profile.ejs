@@ -1,0 +1,9 @@
+<% if (Object.keys(message).length > 0) { %>
+    <div class="alert alert-<%= message.type %>"><%= message.text %></div>
+<% } %>
+<h2><%=lng.PROFILE %></h2>
+Pseudo : <%= locals.profile.username %> <br>
+Rang : <%= locals.profile.rank %> <br>
+Email : <%= locals.profile.email %> <br>
+Créé le <%= locals.profile.createdAt %> <br>
+Connecté le <%= locals.profile.loggedAt %> <br>

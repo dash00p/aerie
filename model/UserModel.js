@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
 const conf = require('../conf');
+const express= require('express');
+const app = express();
 
 const sequelize = new Sequelize(conf.db.name, conf.db.username, conf.db.password, {
     host: conf.db.host,
@@ -23,7 +25,13 @@ const model = sequelize.define('user', {
     username: { type: Sequelize.STRING(50), allowNull: false},
     password: { type: Sequelize.STRING, allowNull: false},
     email: { type: Sequelize.STRING(100), allowNull: false},
-    rank: Sequelize.TINYINT
+    rank: Sequelize.TINYINT,
+    loggedAt: { type: 'TIMESTAMP', allowNull: true, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')},
+
   });
+
+  
+if(app.get('env') === 'development')
+  model.sync();
 
 module.exports = model;
