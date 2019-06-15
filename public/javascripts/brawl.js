@@ -14,14 +14,17 @@
 	$('[data-toggle="tooltip"]').tooltip()
 
 	function init() {
-		fighter1 = "Combattant 1";
-		fighter2 = "Combattant 2";
+		fighter1 = "combattant 1";
+		fighter2 = "combattant 2";
 		bonus_1 = bonus_2 = tf1 = tf2 = 0;
+		me = c_1 = c_2 = a_1 = a_2 = d_1 = d_2 = false;
 		$('#fighter1, #fighter2').val('');
 		updateInput(1);
 		updateInput(2);
 		$('#listActions, #roll_fighter_1, #roll_fighter_2').html('');
 		$('#roll_result, #roll_dif, #roll_previous').removeClass('show');
+		$('.match_end, .match_win').remove();
+		updateButtons();
 	}
 
 	if (me) {
@@ -240,7 +243,7 @@
 	function updateInput(fighterID) {
 		var val = $("#fighter" + fighterID).val();
 		if (val === "")
-			val = "Combattant " + fighterID;
+			val = "combattant " + fighterID;
 
 		$("#submit_attack_" + fighterID).fadeOut(200, function () {
 			$("#submit_attack_" + fighterID).text("Attaque de " + val).fadeIn(200);
