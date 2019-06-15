@@ -40,5 +40,6 @@
     "EVENTS" : "Events",
     "WELCOME" : "Welcome",
     "WRONG_PASSWORD" : "Oops! Wrong password.",
-    "PROFILE" : "Profile"
+    "PROFILE" : "Profile",
+    "SQUARE_BRAWL" : "Brawl Simulator"
 }

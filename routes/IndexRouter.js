@@ -30,7 +30,7 @@ router.get('/login', function(req, res, next) {
 router.get('/registry', (req, res, next) => {
   if(!req.isAuthenticated())
       return res.redirect('login');
-  if(req.user.rank > 2)
+  if(req.user.rank < 2)
       return res.redirect('/');
   res.render('registry', {
       title: utils.setPagetitle(req.i18n_texts.REGISTRY_ANEKSI),
@@ -48,6 +48,12 @@ router.get('/logout', function(req, res, next) {
 router.get('/mouvelian-calendar', function(req, res, next) {
   res.render('mouvelian_calendar', {
     title: utils.setPagetitle(req.i18n_texts.MOUVELIAN_CALENDAR)
+  });
+});
+
+router.get('/brawl', (req, res, next) =>{
+  res.render('brawl', {
+    title: utils.setPagetitle(req.i18n_texts.SQUARE_BRAWL)
   });
 });
 

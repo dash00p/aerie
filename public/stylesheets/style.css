@@ -251,4 +251,7 @@ li:hover a.utility {
   background: none !important;
   color: #fff !important; }
 
+#menu-toggle {
+  z-index: 99; }
+
 /*# sourceMappingURL=style.css.map */

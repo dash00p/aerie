@@ -1,0 +1,130 @@
+<%- contentFor('style') %>
+<link rel="stylesheet" href="/stylesheets/brawl.css">
+
+<%- contentFor('body') %>
+<header id="header" class="row pl-5">
+    <div class="col-md-3 fade pl-4">
+        Touches:
+        <span id="f1"></span>:<span id='f1_touch'></span> / <span id="f2"></span>:<span id='f2_touch'></span>
+    </div>
+    <a href="#" title="Soon" class="col-md-1 offset-md-8">Leaderboard</a>
+</header>
+<div id="content" class="site-content container mt-5" role="main">
+    <div class="col-lg-6 col-md-6 col-ct">
+        <h1 class="text-center">Les combats du Carré<a id="faq" href="#faq" data-toggle="modal"
+                data-target="#faq-modal">(?)</a></h1>
+        <section id="roll_form">
+            <div class="row">
+                <div class="col-md-5 c-f-1 col-md-offset-1">
+                    <div class="col-md-5">
+                        <input type="number" placeholder="Bonus" value="0" step="1" min="0" max="3" class="form-control"
+                            id="bonus_1" name="bonus_1" />
+                    </div>
+                    <input type="text" class="form-control" tabindex="1" id="fighter1" name="fighter1"
+                        placeholder="Nom du combattant 1" required />
+                    <button class="btn_roll btn btn-primary btn-block " tabindex="3" type="submit" id="submit_attack_1"
+                        name="submit_attack_1">Attaque de combattant 1</button>
+                    <button class="btn_roll btn btn-primary btn-block" tabindex="5" type="submit" id="submit_defense_1"
+                        name="submit_defense_1">Défense de combattant 1</button>
+                </div>
+                <div class="col-md-5 c-f-2">
+                    <div class="col-md-5">
+                        <input type="number" placeholder="Bonus" value="0" step="1" min="0" max="3" class="form-control"
+                            id="bonus_2" name="bonus_2" />
+                    </div>
+                    <input type="text" class="form-control" tabindex="2" id="fighter2" name="fighter2"
+                        placeholder="Nom du combattant 2" required />
+                    <button class="btn_roll btn btn-primary btn-block" tabindex="4" type="submit" id="submit_attack_2"
+                        name="submit_attack_2">Attaque de combattant 2</button>
+                    <button class="btn_roll btn btn-primary btn-block" tabindex="6" id="submit_defense_2" type="submit"
+                        name="submit_defense_2">Défense de combattant 2</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <button class="btn btn-primary btn-block" tabindex="7" id="new_fight" type="submit"
+                        name="submit_unset" formnovalidate>Nouveau combat<span class="icon-battle"></span></button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="col-md-6 col-ct">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row">
+                    <div class="col-md text-center roll_fighter">
+                        <h4><span class="badge badge-primary" id="roll_fighter_1"></span></h4>
+                    </div>
+                    <div class="col-md text-center roll_fighter">
+                        <h4><span class="badge badge-primary" id="roll_fighter_2"></span></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-10 col-md-offset-1">
+                <p id="roll_dif" class="tx-c col-md-12 fade alert alert-primary"></p>
+                <p id="roll_result" class="roll_result col-md-12 fade"> Résultat: </p>
+                <div id="roll_previous" class="roll_result col-md-12 fade">
+                    Actions précédentes :
+                    <p id="listActions"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="faq-modal" tabindex="-1" role="dialog" aria-labelledby="faqModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Les combats du Carré: guide d'emploi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Chaque combattant a en tout et pour tout 3 touches. Le premier combattant qui arrive à ces 3 touches
+                    a perdu
+                    le duel, l'arbitre mettra alors (théoriquement) fin au combat. Pour obtenir une touche sur son
+                    rival, il y a
+                    plusieurs moyens d'arriver à ses fins, tous déterminés par le résultat des dés (à 10 faces):</p>
+                <ul>
+                    <li>Assaut classique: le cas le plus courant se déroule en deux phases. La première représente
+                        l'assaut
+                        tandis que la seconde représente la défense. A chaque phase, les deux combattants lancent les
+                        dés. Si
+                        l'attaquant a un score supérieur lors de la phase d'attaque, la phase de défense est jouée.
+                        Sinon c'est
+                        au défenseur de passer à l'attaque. Lors de la défense, si l'attaquant a de nouveau un score
+                        supérieur,
+                        il inflige alors une touche à son adversaire.</li>
+                    <li>Phase d'attaque - attaque critique: si, lors d'un jet d'attaque, le score de l'attaquant est
+                        supérieur
+                        de 5 points à celui de son adversaire, la phase de défense n'a pas besoin d'être jouée et une
+                        touche est
+                        automatiquement ajoutée à l'adversaire. C'est alors à l'adversaire de jouer le tour suivant,
+                        comme une
+                        attaque classique. </li>
+                    <li>Phase de défense - attaque critique: au contraire, si l'attaquant réalise un score critique lors
+                        de la
+                        phase de défense, il inflige évidemment une touche à son adversaire mais il obtient également le
+                        droit
+                        d'attaquer l'adversaire une seconde fois, sans que ce dernier ne puisse jouer son tour
+                        d'attaque.</li>
+                    <li>Phase d'attaque/défense - Défense critique (Contre-attaque): pour les deux phases, un score
+                        critique
+                        conduit à une contre-attaque. Cela signifie que le combattant du tour précédent doit se défendre
+                        pour le
+                        tour à venir.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- contentFor('script') %>
+<script src="javascripts/brawl.js"></script>

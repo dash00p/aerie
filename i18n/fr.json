@@ -40,5 +40,6 @@
     "EVENTS" : "Évènements",
     "WELCOME" : "Bienvenue",
     "WRONG_PASSWORD" : "Oups ! Mauvais mot de passe.",
-    "PROFILE" : "Profil"
+    "PROFILE" : "Profil",
+    "SQUARE_BRAWL" : "Combats du Carré"
 }
