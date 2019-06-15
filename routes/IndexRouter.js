@@ -57,44 +57,6 @@ router.get('/brawl', (req, res, next) =>{
   });
 });
 
-router.get('/profile', function(req, res, next) {
-  if(!req.isAuthenticated())
-    return res.redirect('login');
-
-  let message = "";
-  if(req.session.newAccount){
-    message = {
-      type: "success",
-      text: "Compte créé avec succès !"
-    }
-    delete req.session.newAccount;
-  }
-
-  res.render('profile', {
-    title: utils.setPagetitle(req.i18n_texts.PROFILE),
-    profile: req.user,
-    message: message
-  })
-});
-
-router.get('/profile/:id', async function(req, res, next) {
-  if(!req.isAuthenticated())
-    return res.redirect('/login');
-
-    let id = parseInt(req.params.id);
-    if(!id || isNaN(id))
-      res.redirect('/profile');
-
-  let profile = await user.find(id);
-  if(profile === null)
-    return res.redirect('/profile');
-
-  res.render('profile', {
-    title: utils.setPagetitle(req.i18n_texts.PROFILE),
-    profile: profile
-  })
-});
-
 /* API CALLS*/
 router.post('/login', function(req, res, next) {
   passport.authenticate('local-login', function(err, user, message) {

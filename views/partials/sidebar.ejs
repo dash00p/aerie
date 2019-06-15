@@ -9,18 +9,24 @@
         <% if(typeof isAuthenticated !== 'undefined'){ %>
         <li>
             <h5>
-                <a href="./profile"><%=lng.WELCOME%>
+                <a href="./user"><%=lng.WELCOME%>
                     <%= user.username.charAt(0).toUpperCase() + user.username.substring(1) %> !</a>
             </h5>
         </li>
-        <% if(user.rank > 0){ %>
+        <% if(user.rank >= 20){ %>
+            <li>
+                <a href="./admin">ADMIN</a>
+            </li>
+        <% } %>
+        <% if(user.rank > 2){ %>
         <li>
             <a href="./registry"><%=lng.REGISTRY_ANEKSI%></a>
         </li>
+        <% } %>
         <li>
             <a href="./event"><%=lng.EVENTS%></a>
         </li>
-        <% } %>
+        
         <% } %>
         <li>
             <a href="./mouvelian-calendar"><%=lng.MOUVELIAN_CALENDAR%></a>

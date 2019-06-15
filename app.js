@@ -11,11 +11,16 @@ var i18n = require("i18n-express");
 //var gulp = require('gulp');
 var passport = require('passport');
 var conf = require('./conf');
+var favicon = require('serve-favicon');
 
 var app = express();
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+
 const indexRouter = require('./routes/IndexRouter');
 const usersRouter = require('./routes/UserRouter');
 const eventRouter = require('./routes/EventRouter');
+const adminRouter = require('./routes/AdminRouter');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -77,6 +82,7 @@ app.use(function(req, res, next) {
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/event', eventRouter);
+app.use('/admin', adminRouter);
 /**/
 
 // catch 404 and forward to error handler

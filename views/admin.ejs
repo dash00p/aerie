@@ -1,0 +1,48 @@
+<h1>Admin Zone </h1>
+<section ng-controller="adminCtrl as adVm">
+    <div class="row mt-1 mb-1 justify-content-end">
+        <div class="col-md-4">
+            <input type="text" class="form-control form-control-sm" placeholder="Search member">
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr class="no-highlight hoverable">
+                <th scope="col">
+                    id
+                </th>
+                <th scope="col">
+                    pseudo
+                </th>
+                <th scope="col">
+                    email
+                </th>
+                <th scope="col">
+                    Dernière connexion
+                </th>
+                <th scope="col">
+                    Date de création
+                </th>
+                <th scope="col">
+                    Rang
+                </th>
+                <th scope="col">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in adVm.users" class="hoverable">
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.loggedAt | date:'dd/MM/yyyy à HH:mm'}}</td>
+                <td>{{user.createdAt | date:'dd/MM/yyyy à HH:mm'}}</td>
+                <td>{{user.rank}}</td>
+                <td>Soon</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<%- contentFor('script') %>
+<script src="/javascripts/admin.js"></script>

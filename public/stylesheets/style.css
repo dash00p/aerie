@@ -108,8 +108,9 @@ body {
   position: fixed; }
 
 .nightmode {
-  background-color: #323232;
-  color: #eee; }
+  background-color: #323232; }
+  .nightmode, .nightmode .table {
+    color: #eee; }
   .nightmode .form-control, .nightmode .form-control:focus {
     background-color: #262626;
     color: #979797;

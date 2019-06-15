@@ -1,6 +1,8 @@
 .nightmode{
     background-color: #323232;
-    color: #eee;
+    &, .table{
+        color: #eee;
+    }
     
     .form-control{
         &,&:focus{

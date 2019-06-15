@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "bundle": "browserify -t browserify-css  .\\public\\javascripts\\master.js | uglifyjs >  .\\public\\javascripts\\bundle.js",
-    "bundle-dev": "browserify -t browserify-css  .\\public\\javascripts\\master.js >  .\\public\\javascripts\\bundle.js"    
+    "bundle-dev": "browserify -t browserify-css  .\\public\\javascripts\\master.js >  .\\public\\javascripts\\bundle.js"
   },
   "dependencies": {
     "angular": "^1.7.5",
@@ -32,6 +32,7 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "sequelize": "^4.42.0",
+    "serve-favicon": "^2.5.0",
     "uglify-js": "^3.4.9"
   },
   "devDependencies": {
