@@ -11,6 +11,8 @@
 	var result;
 	var previous;
 
+	$('[data-toggle="tooltip"]').tooltip()
+
 	function init() {
 		fighter1 = "Combattant 1";
 		fighter2 = "Combattant 2";
