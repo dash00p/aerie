@@ -47,5 +47,7 @@
     "INVESTIGATOR": "enquêteur",
     "SERAPH_QUARTER" : "Quartier séraphin",
     "A_TESTIMONIAL" : "un témoignage",
-    "A_PROOF" : "une preuve"
+    "A_PROOF" : "une preuve",
+    "WITNESS_NAME" : "nom du témoin",
+    "DEPOSITION_DATEHOUR" : "date et heure de la déposition"
 }

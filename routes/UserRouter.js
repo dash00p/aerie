@@ -72,4 +72,34 @@ router.get('/list', async function (req, res, next) {
   return res.send(await user.getList());
 });
 
+router.get('/:id/rights', async function (req, res, next) {
+  if (!req.isAuthenticated())
+    return res.send(401, 'You must be logged in to use this ressource.'); 
+
+  if(req.user.rank < 20)
+    return res.send(401, 'You are not allowed to access this ressource.'); 
+
+  return res.send(await user.getRights(req.params.id));
+});
+
+router.post('/:id/rights', async function (req, res, next) {
+  if (!req.isAuthenticated())
+    return res.send(401, 'You must be logged in to use this ressource.'); 
+
+  if(req.user.rank < 20)
+    return res.send(401, 'You are not allowed to access this ressource.'); 
+
+  return res.send(await user.addRights(req.params.id, req.body.rightsToAdd));
+});
+
+router.delete('/:id/rights', async function (req, res, next) {
+  if (!req.isAuthenticated())
+    return res.send(401, 'You must be logged in to use this ressource.'); 
+
+  if(req.user.rank < 20)
+    return res.send(401, 'You are not allowed to access this ressource.'); 
+
+  return res.send(await user.removeRights(req.params.id, req.body.rightsToRemove));
+});
+
 module.exports = router;

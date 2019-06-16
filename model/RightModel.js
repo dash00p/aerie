@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const conf = require('../conf');
 const express = require('express');
 const app = express();
+const ixRight = require('./index/IndexRightModel');
 
 const sequelize = new Sequelize(conf.db.name, conf.db.username, conf.db.password, {
     host: conf.db.host,
@@ -21,14 +22,23 @@ const sequelize = new Sequelize(conf.db.name, conf.db.username, conf.db.password
     operatorsAliases: false
 });
 
-const model = sequelize.define('testimonial', {
-    description: { type: Sequelize.STRING, allowNull: false },
-    witness: { type: Sequelize.STRING(50), allowNull: false },
-    investigationId: Sequelize.INTEGER,
-    depositionDate: { type: 'TIMESTAMP', allowNull: false }
-});
+class Right extends Sequelize.Model {
+    toObject() {
+        return this.ixRightId;
+    }
+}
+
+Right.init({
+    userId: Sequelize.INTEGER
+}, {
+        sequelize,
+        modelName: 'right'
+    });
+
+//Foreign key
+Right.belongsTo(ixRight);
 
 if (app.get('env') === 'development')
-    model.sync();
+    Right.sync();
 
-module.exports = model;
+module.exports = Right;

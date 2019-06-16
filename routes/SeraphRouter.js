@@ -51,16 +51,20 @@ router.get('/investigation/all', async function (req, res, next) {
     return res.send(investigations);
 });
 
-router.get('/investigation/:id/records', function (req, res, next) {
+router.get('/investigation/:id/records', async function (req, res, next) {
     if (!req.isAuthenticated())
         return res.redirect('/login');
 
     if (req.user.rank < 20)
         return res.redirect('/');
 
-    let id = parseInt(req.query.id);
+    let id = parseInt(req.params.id);
     if (!isNaN(id)) {
-        return res.send('');
+        let records = await controller.getRecords(id);
+        if(records === null)
+            return res.send(204);
+
+        return res.send(records);
     }
     return res(400);
 });
@@ -72,8 +76,30 @@ router.post('/investigation', async function (req, res, next) {
     if (req.user.rank < 20)
         return res.send(401, 'You are not allowed to access this ressource.');
 
-    let investigation = await controller.create(req.body.newInvestigation);
+    let investigation = await controller.createInvestigation(req.body.newInvestigation);
     res.send(investigation);
-})
+});
+
+router.post('/testimonial', async function (req, res, next) {
+    if (!req.isAuthenticated())
+        return res.send(401, 'You must be logged in to use this ressource.');
+
+    if (req.user.rank < 20)
+        return res.send(401, 'You are not allowed to access this ressource.');
+
+    let testimonial = await controller.createTestimonial(req.body.newTestimonial);
+    res.send(testimonial);
+});
+
+router.post('/proof', async function (req, res, next) {
+    if (!req.isAuthenticated())
+        return res.send(401, 'You must be logged in to use this ressource.');
+
+    if (req.user.rank < 20)
+        return res.send(401, 'You are not allowed to access this ressource.');
+
+    let proof = await controller.createProof(req.body.newProof);
+    res.send(proof);
+});
 
 module.exports = router;

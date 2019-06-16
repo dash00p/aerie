@@ -39,10 +39,64 @@
                 <td>{{user.loggedAt | date:'dd/MM/yyyy à HH:mm'}}</td>
                 <td>{{user.createdAt | date:'dd/MM/yyyy à HH:mm'}}</td>
                 <td>{{user.rank}}</td>
-                <td>Soon</td>
+                <td><button class="btn btn-primary" ng-click="adVm.openModalUser(user)">Modifier</button></td>
             </tr>
         </tbody>
     </table>
+    <!-- EDIT MODAL -->
+    <div id="editUserModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modifier un utilisateur</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="title">Pseudo</label>
+                        <input type="text" class="form-control" id="title" ng-model="adVm.userToEdit.username">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Email</label>
+                        <input type="text" class="form-control" id="description" ng-model="adVm.userToEdit.email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Email</label>
+                        <input type="text" class="form-control" id="description" ng-model="adVm.userToEdit.email" />
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="no-highlight hoverable">
+                                <th scope="col">
+                                    Nom du droit
+                                </th>
+                                <th scope="col">
+                                    Actif
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="right in adVm.userToEdit.rights">
+                                <td>{{right.rightName}}</td>
+                                <td><input type="checkbox" ng-model="right.isActive" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p ng-show="inVm.newTestimonial.error" class="alert alert-danger">
+                        {{inVm.newTestimonial.error.message}}
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary"
+                        ng-click="adVm.saveUser()"><%= lng.ACTIONS.MODIFY %></button>
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal"><%= lng.ACTIONS.CLOSE %></button>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <%- contentFor('script') %>
 <script src="/javascripts/admin.js"></script>

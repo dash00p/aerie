@@ -47,5 +47,7 @@
     "INVESTIGATOR" : "investigator",
     "SERAPH_QUARTER" : "Seraph Quarter",
     "A_TESTIMONIAL" : "a testimonial",
-    "A_PROOF" : "a proof"
+    "A_PROOF" : "a proof",
+    "WITNESS_NAME" : "witness name",
+    "DEPOSITION_DATEHOUR" : "date and hour of deposition"
 }

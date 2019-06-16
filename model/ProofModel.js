@@ -24,7 +24,8 @@ const sequelize = new Sequelize(conf.db.name, conf.db.username, conf.db.password
 const model = sequelize.define('proof', {
     title: { type: Sequelize.STRING(50), allowNull: false},
     description: { type: Sequelize.STRING, allowNull: false},
-    investigationId : Sequelize.INTEGER
+    investigationId : Sequelize.INTEGER,
+    discoveryDate: { type: 'TIMESTAMP', allowNull: false }
   });
 
 if(app.get('env') === 'development')

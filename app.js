@@ -16,6 +16,7 @@ var favicon = require('serve-favicon');
 var app = express();
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
+const mainRouter = require('./routes/MainRouter');
 const indexRouter = require('./routes/IndexRouter');
 const usersRouter = require('./routes/UserRouter');
 const eventRouter = require('./routes/EventRouter');
@@ -67,6 +68,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next) {
   if(req.session && req.session.passport && typeof req.session.passport == "string"){
     res.locals.user = req.user = JSON.parse(req.session.passport).user;
+    res.locals.rights = req.session.rights;
     res.locals.isAuthenticated = true;
   }
   res.locals.version = conf.version;
@@ -81,7 +83,8 @@ app.use(function(req, res, next) {
 });
 
 /* ROUTERS */
-app.use('/', indexRouter);
+app.use('/', mainRouter);
+app.use('/index', indexRouter);
 app.use('/user', usersRouter);
 app.use('/event', eventRouter);
 app.use('/admin', adminRouter);

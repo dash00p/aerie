@@ -6,7 +6,7 @@
         <p class="lead"><%=investigation.description%></p>
         <hr class="my-4">
         <p>Enquêteur chargé de l'enquête: <%=investigation.investigator%></p>
-        <p>Commencée le : <%=investigation.start%></p>
+        <p>Enquête commencée le : <%=investigation.start%></p>
         <div class="row mb-1 align-items-center">
             <p class="col-md-3 display-5 pr-0">Avancement:</p>
             <div class="col-md-9 pl-0">
@@ -24,182 +24,139 @@
             data-target="#newProofModal">Ajouter une preuve</a>
         <a class="btn btn-danger btn-lg" href="#" role="button">Clore l'enquête</a>
     </div>
-    <h2>Témoignages</h2>
-    <div class="card-columns">
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title that wraps to a new line</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-            </div>
-        </div>
-        <div class="card p-3">
-            <blockquote class="blockquote mb-0 card-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                <footer class="blockquote-footer">
-                    <small class="text-muted">
-                        Someone famous in <cite title="Source Title">Source Title</cite>
-                    </small>
-                </footer>
-            </blockquote>
-        </div>
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-        <div class="card bg-primary text-white text-center p-3">
-            <blockquote class="blockquote mb-0">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
-                <footer class="blockquote-footer text-white">
-                    <small>
-                        Someone famous in <cite title="Source Title">Source Title</cite>
-                    </small>
-                </footer>
-            </blockquote>
-        </div>
-        <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-        </div>
-        <div class="card p-3 text-right">
-            <blockquote class="blockquote mb-0">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                <footer class="blockquote-footer">
-                    <small class="text-muted">
-                        Someone famous in <cite title="Source Title">Source Title</cite>
-                    </small>
-                </footer>
-            </blockquote>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is another card with title and supporting text below. This card has some
-                    additional content to make it slightly taller overall.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-    </div>
-    <!-- TESTIMONIAL MODAL -->
-    <div id="newTestimonialModal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" ng-show="!seVm.editInvestigation">
-                        <%= lng.ACTIONS.ADD+' '+lng.A_TESTIMONIAL %></h5>
-                    <h5 class="modal-title" ng-show="seVm.editInvestigation">
-                        <%= lng.ACTIONS.MODIFY+' '+lng.A_TESTIMONIAL %></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="title"><%= lng.TITLE %></label>
-                        <input type="text" class="form-control" id="title" ng-model="seVm.newInvestigation.title">
+    <ul class="nav nav-pills mt-5 mb-2">
+        <li class="nav-item">
+            <a class="nav-link active" id="testimonials-tab" data-toggle="tab" href="#testimonials" role="tab"
+                aria-controls="testimonials" aria-selected="true">Témoignages</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="proofs-tab" data-toggle="tab" role="tab" href="#proofs"
+                aria-controls="proofs">Preuves</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="testimonials" role="tabpanel" aria-labelledby="testimonials-tab">
+            <div class="card-columns">
+                <div class="card" ng-repeat="testimonial in inVm.testimonials">
+                    <div class="card-body">
+                        <h5 class="card-title">Déposition de {{testimonial.witness}}</h5>
+                        <p class="card-text">
+                            {{testimonial.description}}
+                        </p>
+                        <p class="card-text">
+                            <small class="text-muted">{{testimonial.depositionDate}}</small>
+                        </p>
                     </div>
-                    <div class="form-group">
-                        <label for="description"><%= lng.DESCRIPTION %></label>
-                        <textarea class="form-control" id="description" ng-model="seVm.newInvestigation.description">
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="proofs" role="tabpanel" aria-labelledby="proofs-tab">
+            <div class="card-columns">
+                <div class="card" ng-repeat="proof in inVm.proofs">
+                    <div class="card-body">
+                        <h5 class="card-title">{{proof.title}}</h5>
+                        <p class="card-text">
+                            {{proof.description}}
+                        </p>
+                        <p class="card-text">
+                            <small class="text-muted">{{proof.discoveryDate}}</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- TESTIMONIAL MODAL -->
+        <div id="newTestimonialModal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" ng-show="!inVm.editTestimonial">
+                            <%= lng.ACTIONS.ADD+' '+lng.A_TESTIMONIAL %></h5>
+                        <h5 class="modal-title" ng-show="inVm.editTestimonial">
+                            <%= lng.ACTIONS.MODIFY+' '+lng.A_TESTIMONIAL %></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="title"><%= lng.WITNESS_NAME %></label>
+                            <input type="text" class="form-control" id="title" ng-model="inVm.newTestimonial.witness">
+                        </div>
+                        <div class="form-group">
+                            <label for="description"><%= lng.DESCRIPTION %></label>
+                            <textarea class="form-control" id="description" ng-model="inVm.newTestimonial.description">
                                         </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="title"><%= lng.DEPOSITION_DATEHOUR %></label>
+                            <input type="datetime-local" class="form-control" id="title"
+                                ng-model="inVm.newTestimonial.depositionDate">
+                        </div>
+                        <p ng-show="inVm.newTestimonial.error" class="alert alert-danger">
+                            {{inVm.newTestimonial.error.message}}
+                        </p>
                     </div>
-                    <div class="form-group">
-                        <label for="dateStart"><%= lng.BEGIN %></label>
-                        <input type="date" class="form-control" id="dateStart" ng-model="seVm.newInvestigation.start">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" ng-show="inVm.editTestimonial"
+                            ng-click="inVm.deleteInvestigation()"><%= lng.ACTIONS.DELETE %></button>
+                        <button type="button" class="btn btn-primary" ng-show="!inVm.editTestimonial"
+                            ng-click="inVm.saveTestimonial()"><%= lng.ACTIONS.CREATE %></button>
+                        <button type="button" class="btn btn-primary" ng-show="inVm.editTestimonial"
+                            ng-click="inVm.saveTestimonial()"><%= lng.ACTIONS.MODIFY %></button>
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal"><%= lng.ACTIONS.CLOSE %></button>
                     </div>
-                    <div class="form-group">
-                        <label for="dateEnd"><%= lng.END %></label>
-                        <input type="date" class="form-control" id="dateEnd" ng-model="seVm.newInvestigation.end">
-                    </div>
-                    <div class="form-group">
-                        <label for="investigator"><%= lng.INVESTIGATOR %></label>
-                        <input type="text" class="form-control" id="investigator"
-                            ng-model="seVm.newInvestigation.investigator">
-                    </div>
-                    <p ng-show="seVm.newInvestigation.error" class="alert alert-danger">
-                        {{seVm.newInvestigation.error.message}}
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" ng-show="seVm.editInvestigation"
-                        ng-click="seVm.deleteInvestigation()"><%= lng.ACTIONS.DELETE %></button>
-                    <button type="button" class="btn btn-primary" ng-show="!seVm.editInvestigation"
-                        ng-click="seVm.saveInvestigation()"><%= lng.ACTIONS.CREATE %></button>
-                    <button type="button" class="btn btn-primary" ng-show="seVm.editInvestigation"
-                        ng-click="seVm.saveInvestigation()"><%= lng.ACTIONS.MODIFY %></button>
-                    <button type="button" class="btn btn-secondary"
-                        data-dismiss="modal"><%= lng.ACTIONS.CLOSE %></button>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- PROOF MODAL -->
+        <!-- PROOF MODAL -->
 
-    <div id="newProofModal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" ng-show="!seVm.editInvestigation">
-                        <%= lng.ACTIONS.ADD+' '+lng.A_PROOF %></h5>
-                    <h5 class="modal-title" ng-show="seVm.editInvestigation">
-                        <%= lng.ACTIONS.MODIFY+' '+lng.A_PROOF %></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="title"><%= lng.TITLE %></label>
-                        <input type="text" class="form-control" id="title" ng-model="seVm.newInvestigation.title">
+        <div id="newProofModal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" ng-show="!inVm.editProof">
+                            <%= lng.ACTIONS.ADD+' '+lng.A_PROOF %></h5>
+                        <h5 class="modal-title" ng-show="inVm.editProof">
+                            <%= lng.ACTIONS.MODIFY+' '+lng.A_PROOF %></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label for="description"><%= lng.DESCRIPTION %></label>
-                        <textarea class="form-control" id="description" ng-model="seVm.newInvestigation.description">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="title"><%= lng.TITLE %></label>
+                            <input type="text" class="form-control" id="title" ng-model="inVm.newProof.title">
+                        </div>
+                        <div class="form-group">
+                            <label for="description"><%= lng.DESCRIPTION %></label>
+                            <textarea class="form-control" id="description" ng-model="inVm.newProof.description">
                                             </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateStart"><%= lng.DISCOVERY_DATE %></label>
+                            <input type="datetime-local" class="form-control" id="dateStart"
+                                ng-model="inVm.newProof.discoveryDate">
+                        </div>
+                        <p ng-show="inVm.newProof.error" class="alert alert-danger">
+                            {{inVm.newProof.error.message}}
+                        </p>
                     </div>
-                    <div class="form-group">
-                        <label for="dateStart"><%= lng.BEGIN %></label>
-                        <input type="date" class="form-control" id="dateStart" ng-model="seVm.newInvestigation.start">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" ng-show="inVm.editProof"
+                            ng-click="inVm.deleteInvestigation()"><%= lng.ACTIONS.DELETE %></button>
+                        <button type="button" class="btn btn-primary" ng-show="!inVm.editProof"
+                            ng-click="inVm.saveProof()"><%= lng.ACTIONS.CREATE %></button>
+                        <button type="button" class="btn btn-primary" ng-show="inVm.editProof"
+                            ng-click="inVm.saveProof()"><%= lng.ACTIONS.MODIFY %></button>
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal"><%= lng.ACTIONS.CLOSE %></button>
                     </div>
-                    <div class="form-group">
-                        <label for="dateEnd"><%= lng.END %></label>
-                        <input type="date" class="form-control" id="dateEnd" ng-model="seVm.newInvestigation.end">
-                    </div>
-                    <div class="form-group">
-                        <label for="investigator"><%= lng.INVESTIGATOR %></label>
-                        <input type="text" class="form-control" id="investigator"
-                            ng-model="seVm.newInvestigation.investigator">
-                    </div>
-                    <p ng-show="seVm.newInvestigation.error" class="alert alert-danger">
-                        {{seVm.newInvestigation.error.message}}
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" ng-show="seVm.editInvestigation"
-                        ng-click="seVm.deleteInvestigation()"><%= lng.ACTIONS.DELETE %></button>
-                    <button type="button" class="btn btn-primary" ng-show="!seVm.editInvestigation"
-                        ng-click="seVm.saveInvestigation()"><%= lng.ACTIONS.CREATE %></button>
-                    <button type="button" class="btn btn-primary" ng-show="seVm.editInvestigation"
-                        ng-click="seVm.saveInvestigation()"><%= lng.ACTIONS.MODIFY %></button>
-                    <button type="button" class="btn btn-secondary"
-                        data-dismiss="modal"><%= lng.ACTIONS.CLOSE %></button>
                 </div>
             </div>
         </div>
-    </div>
 </section>
-<%= JSON.stringify(investigation) %>
 <%- contentFor('script') %>
 <script src="/javascripts/investigation.js"></script>
 <script>const investigationId = <%=investigation.id%>;</script>

@@ -17,11 +17,13 @@
         <li>
             <a href="/admin" class="<%=(locals.pagename==="admin"?"active":"")%>">Admin Zone</a>
         </li>
+        <% } %>
+        <% if(rights.includes(2)){ %>
         <li>
             <a href="/seraph" class="<%=(locals.pagename==="seraph"?"active":"")%>"><%=lng.SERAPH_QUARTER%></a>
         </li>
         <% } %>
-        <% if(user.rank > 2){ %>
+        <% if(rights.includes(1)){ %>
         <li>
             <a href="/registry" class="<%=(locals.pagename==="registry"?"active":"")%>"><%=lng.REGISTRY_ANEKSI%></a>
         </li>
