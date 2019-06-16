@@ -49,21 +49,21 @@ body {
   padding: 0;
   list-style: none;
   color: #999; }
-  .sidebar-nav li {
+  .sidebar-nav li, .sidebar-nav li h5 {
     text-indent: 20px;
     line-height: 40px; }
-    .sidebar-nav li a {
-      display: block;
+  .sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999; }
+    .sidebar-nav li a.active {
+      font-weight: 900; }
+    .sidebar-nav li a:hover {
       text-decoration: none;
-      color: #999999; }
-      .sidebar-nav li a.active {
-        font-weight: 900; }
-      .sidebar-nav li a:hover {
-        text-decoration: none;
-        color: #fff;
-        background: rgba(255, 255, 255, 0.2); }
-      .sidebar-nav li a:active, .sidebar-nav li a:focus {
-        text-decoration: none; }
+      color: #fff;
+      background: rgba(255, 255, 255, 0.2); }
+    .sidebar-nav li a:active, .sidebar-nav li a:focus {
+      text-decoration: none; }
   .sidebar-nav > .sidebar-brand {
     height: 65px;
     font-size: 18px;
@@ -109,7 +109,7 @@ body {
 
 .nightmode {
   background-color: #323232; }
-  .nightmode, .nightmode .table {
+  .nightmode, .nightmode .table, .nightmode footer.footer {
     color: #eee; }
   .nightmode .form-control, .nightmode .form-control:focus {
     background-color: #262626;
@@ -137,6 +137,19 @@ body {
     background: #5f5f5f; }
   .nightmode .fc-unthemed .fc-content, .nightmode .fc-unthemed .fc-divider, .nightmode .fc-unthemed .fc-list-heading td, .nightmode .fc-unthemed .fc-list-view, .nightmode .fc-unthemed .fc-popover, .nightmode .fc-unthemed .fc-row, .nightmode .fc-unthemed tbody, .nightmode .fc-unthemed td, .nightmode .fc-unthemed th, .nightmode .fc-unthemed thead {
     border-color: #4b4b4b; }
+  .nightmode .toast, .nightmode .jumbotron, .nightmode .card {
+    background-color: rgba(7, 9, 9, 0.85);
+    border-top-color: rgba(71, 71, 71, 0.1);
+    border-right-color: rgba(71, 71, 71, 0.1);
+    border-bottom-color: rgba(71, 71, 71, 0.1);
+    border-left-color: rgba(71, 71, 71, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0.25rem 1rem; }
+  .nightmode .toast .toast-header {
+    color: #8e8b85;
+    background-color: rgba(7, 9, 9, 0.85);
+    border-bottom-color: rgba(71, 71, 71, 0.05); }
+  .nightmode hr {
+    border-top-color: rgba(255, 255, 255, 0.1); }
 
 .switch {
   font-size: 1rem;
@@ -228,6 +241,11 @@ body {
   .switch + .switch {
     margin-left: 1rem; }
 
+.display-5 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 0.9; }
+
 body {
   /* Margin bottom by footer height */
   margin-bottom: 61px; }
@@ -239,14 +257,13 @@ body {
     height: 40px;
     line-height: 40px;
     /* Vertically center the text there */
-    background-color: #f5f5f5; }
+    background-color: #f5f5f5;
+    color: #212529; }
 
 a {
-  color: #2196f3;
   transition: 0.3s ease color; }
-  a.utility:hover {
-    background: none !important;
-    color: #fff !important; }
+  a {
+    color: #2196f3; }
 
 li:hover a.utility {
   background: none !important;
@@ -254,5 +271,15 @@ li:hover a.utility {
 
 #menu-toggle {
   z-index: 99; }
+
+#toast-wrapper {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 100%;
+  max-width: 250px; }
+
+.form-group label::first-letter {
+  text-transform: capitalize; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,4 +1,4 @@
-@import "sidebar", "utilities", "nightmode", "switch", "mixin";
+@import "sidebar", "utilities", "nightmode", "switch", "mixin", "typography";
 
 body{
     /* Margin bottom by footer height */
@@ -11,17 +11,15 @@ body{
     height: 40px;
     line-height: 40px; /* Vertically center the text there */
     background-color: #f5f5f5;
+    color: #212529;
   }
 }
 
 a{
-  color: #2196f3;
-  transition: 0.3s ease color;
-
-  &.utility:hover{
-    background: none!important;
-    color: #fff!important;
+  &:not(.utility, .btn){
+    color: #2196f3;
   }
+  transition: 0.3s ease color;
 }
 
 li:hover {
@@ -33,4 +31,16 @@ li:hover {
 
 #menu-toggle{
   z-index: 99;
+}
+
+#toast-wrapper{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width:100%;
+  max-width: 250px;
+}
+
+.form-group label::first-letter{
+  text-transform: capitalize;
 }

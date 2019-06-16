@@ -1,6 +1,6 @@
 .nightmode{
     background-color: #323232;
-    &, .table{
+    &, .table, footer.footer{
         color: #eee;
     }
     
@@ -50,5 +50,26 @@
 
     .fc-unthemed .fc-content, .fc-unthemed .fc-divider, .fc-unthemed .fc-list-heading td, .fc-unthemed .fc-list-view, .fc-unthemed .fc-popover, .fc-unthemed .fc-row, .fc-unthemed tbody, .fc-unthemed td, .fc-unthemed th, .fc-unthemed thead{
         border-color: #4b4b4b;
+    }
+
+    .toast, .jumbotron, .card{
+        background-color: rgba(7, 9, 9, 0.85);
+        border-top-color: rgba(71, 71, 71, 0.1);
+        border-right-color: rgba(71, 71, 71, 0.1);
+        border-bottom-color: rgba(71, 71, 71, 0.1);
+        border-left-color: rgba(71, 71, 71, 0.1);
+        box-shadow: rgba(0, 0, 0, 0.5) 0px 0.25rem 1rem;
+    }
+
+    .toast{       
+        .toast-header{
+            color: rgb(142, 139, 133);
+            background-color: rgba(7, 9, 9, 0.85);
+            border-bottom-color: rgba(71, 71, 71, 0.05);
+        }
+    }
+
+    hr{
+        border-top-color: rgba(255,255,255,.1);
     }
 }

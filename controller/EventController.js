@@ -15,7 +15,7 @@ const modelToObject = event => {
     }
 }
 
-const ObjetToModel = event => {
+const objectToModel = event => {
     return {
         title : event.title,
         description : event.description,
@@ -35,10 +35,10 @@ const EventController = {
         return events;
     },
     create : async event =>{
-        return result = await model.create(ObjetToModel(event));
+        return result = await model.create(objectToModel(event));
     },
     update : async event => {
-        return result = await model.update(ObjetToModel(event), {where:{id: event.id}});
+        return result = await model.update(objectToModel(event), {where:{id: event.id}});
     },
     remove : async id => {
         return result = await model.destroy({where:{id: id}});

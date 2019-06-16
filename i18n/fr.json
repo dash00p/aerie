@@ -7,7 +7,8 @@
         "CLOSE" : "Fermer",
         "MODIFY" : "Modifier",
         "CREATE" : "Créer",
-        "DELETE" : "Supprimer"
+        "DELETE" : "Supprimer",
+        "ADD" : "Ajouter"
     },
     "STATES": {
         "DELETED" : "supprimé",
@@ -41,5 +42,10 @@
     "WELCOME" : "Bienvenue",
     "WRONG_PASSWORD" : "Oups ! Mauvais mot de passe.",
     "PROFILE" : "Profil",
-    "SQUARE_BRAWL" : "Combats du Carré"
+    "SQUARE_BRAWL" : "Combats du Carré",
+    "AN_INVESTIGATION" : "une enquête",
+    "INVESTIGATOR": "enquêteur",
+    "SERAPH_QUARTER" : "Quartier séraphin",
+    "A_TESTIMONIAL" : "un témoignage",
+    "A_PROOF" : "une preuve"
 }

@@ -61,7 +61,7 @@ body {
     text-shadow: 0 0 7px #FF0000;
   }
   #header, footer, #menu-toggle {
-    transition: -webkit-filter 1.5s ease-out, -moz-filter 1.5s ease-out, -o-filter 1.5s ease-out, -ms-filter 1.5s ease-out, filter 1.5s ease-out;
+    transition: -webkit-filter 1.5s ease-out, -moz-filter 1.5s ease-out, -o-filter 1.5s ease-out, -ms-filter 1.5s ease-out, filter 1.5s ease-out, color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     &.blur{
     -webkit-filter: blur(4px);
     -moz-filter: blur(4px);

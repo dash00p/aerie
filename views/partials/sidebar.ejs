@@ -2,43 +2,47 @@
 <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
-            <a href="./">
+            <a href="/">
                 Aerie
             </a>
         </li>
         <% if(typeof isAuthenticated !== 'undefined'){ %>
         <li>
             <h5>
-                <a href="./user"><%=lng.WELCOME%>
+                <a href="/user"><%=lng.WELCOME%>
                     <%= user.username.charAt(0).toUpperCase() + user.username.substring(1) %> !</a>
             </h5>
         </li>
         <% if(user.rank >= 20){ %>
-            <li>
-                <a href="./admin">ADMIN</a>
-            </li>
+        <li>
+            <a href="/admin" class="<%=(locals.pagename==="admin"?"active":"")%>">Admin Zone</a>
+        </li>
+        <li>
+            <a href="/seraph" class="<%=(locals.pagename==="seraph"?"active":"")%>"><%=lng.SERAPH_QUARTER%></a>
+        </li>
         <% } %>
         <% if(user.rank > 2){ %>
         <li>
-            <a href="./registry"><%=lng.REGISTRY_ANEKSI%></a>
+            <a href="/registry" class="<%=(locals.pagename==="registry"?"active":"")%>"><%=lng.REGISTRY_ANEKSI%></a>
         </li>
         <% } %>
         <li>
-            <a href="./event"><%=lng.EVENTS%></a>
+            <a href="/event" class="<%=(locals.pagename==="event"?"active":"")%>"><%=lng.EVENTS%></a>
         </li>
-        
+
         <% } %>
         <li>
-            <a href="./mouvelian-calendar"><%=lng.MOUVELIAN_CALENDAR%></a>
+            <a href="/mouvelian-calendar"
+                class="<%=(locals.pagename==="mouvelian-calendar"?"active":"")%>"><%=lng.MOUVELIAN_CALENDAR%></a>
         </li>
         <li>
-            <a href="./brawl"><%=lng.SQUARE_BRAWL%></a>
+            <a href="/brawl" class="<%=(locals.pagename==="brawl"?"active":"")%>"><%=lng.SQUARE_BRAWL%></a>
         </li>
         <li>
-            <a class="<%=(lang=="fr"?"active":"")%>" href="<%=locals.active%>?clang=fr">Français</a>
+            <a class="<%=(lang=="fr"?"active":"")%>" href="?clang=fr">Français</a>
         </li>
         <li>
-            <a class="<%=(lang=="en"?"active":"")%>" href="<%=locals.active%>?clang=en">English</a>
+            <a class="<%=(lang=="en"?"active":"")%>" href="?clang=en">English</a>
         </li>
         <li>
             <div class="form-group">
@@ -56,9 +60,9 @@
         </li>
         <li>
             <% if(typeof isAuthenticated !== 'undefined'){ %>
-            <a href="./logout"><%=lng.LOG_OUT%></a>
+            <a href="/logout"><%=lng.LOG_OUT%></a>
             <% } else { %>
-            <a href="./login"><%=lng.LOG_IN%></a>
+            <a href="/login" class="<%=(locals.pagename==="login"?"active":"")%>"><%=lng.LOG_IN%></a>
             <% } %>
         </li>
     </ul>

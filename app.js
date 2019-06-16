@@ -20,6 +20,7 @@ const indexRouter = require('./routes/IndexRouter');
 const usersRouter = require('./routes/UserRouter');
 const eventRouter = require('./routes/EventRouter');
 const adminRouter = require('./routes/AdminRouter');
+const seraphRouter = require('./routes/SeraphRouter');
 
 
 // view engine setup
@@ -70,6 +71,7 @@ app.use(function(req, res, next) {
   }
   res.locals.version = conf.version;
   res.locals.cookies = req.cookies;
+  res.locals.pagename = req.path.substr(1).split('/')[0];
   next();
 });
 app.use(function(req, res, next) {
@@ -83,6 +85,7 @@ app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/event', eventRouter);
 app.use('/admin', adminRouter);
+app.use('/seraph', seraphRouter);
 /**/
 
 // catch 404 and forward to error handler

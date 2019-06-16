@@ -1,0 +1,103 @@
+<h1><%=lng.SERAPH_QUARTER%></h1>
+<section ng-controller="seraphCtrl as seVm">
+    <div class="row mt-1 mb-2">
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                data-target="#newInvestigationModal">Créer une
+                nouvelle enquête</button>
+        </div>
+        <div class="col-md-4 offset-md-4">
+            <input type="text" class="form-control form-control-sm" placeholder="Chercher une enquête">
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr class="no-highlight hoverable">
+                <th scope="col">
+                    Libellé
+                </th>
+                <th scope="col">
+                    Enquêteur
+                </th>
+                <th scope="col">
+                    Mis à jour le
+                </th>
+                <th scope="col">
+                    Créée le
+                </th>
+                <th scope="col">
+                    Statut
+                </th>
+                <th scope="col">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="investigation in seVm.investigations" class="hoverable"
+                ng-click="openLink('/investigation?id='+investigation.id)">
+                <td>{{investigation.title}}</td>
+                <td>{{investigation.investigator}}</td>
+                <td>{{investigation.updatedAt | date:'dd/MM/yyyy à HH:mm'}}</td>
+                <td>{{investigation.createdAt | date:'dd/MM/yyyy à HH:mm'}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- MODAL -->
+    <div id="newInvestigationModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" ng-show="!seVm.editInvestigation">
+                        <%= lng.ACTIONS.CREATE+' '+lng.AN_INVESTIGATION %></h5>
+                    <h5 class="modal-title" ng-show="seVm.editInvestigation">
+                        <%= lng.ACTIONS.MODIFY+' '+lng.AN_INVESTIGATION %></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="title"><%= lng.TITLE %></label>
+                        <input type="text" class="form-control" id="title" ng-model="seVm.newInvestigation.title">
+                    </div>
+                    <div class="form-group">
+                        <label for="description"><%= lng.DESCRIPTION %></label>
+                        <textarea class="form-control" id="description" ng-model="seVm.newInvestigation.description">
+                                    </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateStart"><%= lng.BEGIN %></label>
+                        <input type="date" class="form-control" id="dateStart" ng-model="seVm.newInvestigation.start">
+                    </div>
+                    <div class="form-group">
+                        <label for="dateEnd"><%= lng.END %></label>
+                        <input type="date" class="form-control" id="dateEnd" ng-model="seVm.newInvestigation.end">
+                    </div>
+                    <div class="form-group">
+                        <label for="investigator"><%= lng.INVESTIGATOR %></label>
+                        <input type="text" class="form-control" id="investigator"
+                            ng-model="seVm.newInvestigation.investigator">
+                    </div>
+                    <p ng-show="seVm.newInvestigation.error" class="alert alert-danger">
+                        {{seVm.newInvestigation.error.message}}
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" ng-show="seVm.editInvestigation"
+                        ng-click="seVm.deleteInvestigation()"><%= lng.ACTIONS.DELETE %></button>
+                    <button type="button" class="btn btn-primary" ng-show="!seVm.editInvestigation"
+                        ng-click="seVm.saveInvestigation()"><%= lng.ACTIONS.CREATE %></button>
+                    <button type="button" class="btn btn-primary" ng-show="seVm.editInvestigation"
+                        ng-click="seVm.saveInvestigation()"><%= lng.ACTIONS.MODIFY %></button>
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal"><%= lng.ACTIONS.CLOSE %></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<%- contentFor('script') %>
+<script src="/javascripts/seraph.js"></script>

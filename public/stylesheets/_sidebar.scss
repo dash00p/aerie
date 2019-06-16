@@ -58,8 +58,10 @@
     color: #999;
 
     li {
+      &, h5{
         text-indent: 20px;
         line-height: 40px;
+      }
 
         a {
             display: block;
