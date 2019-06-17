@@ -62,7 +62,6 @@ function registryCtrl($http) {
         }
     }
 
-    //TODO
     vm.insertPost = () => {
         $http.post(`${bot_url}/registry/message/new`, {text:vm.message.content, channelNumber: vm.selectedChannel.id}).then( res => {
             vm.messageEdited = true;

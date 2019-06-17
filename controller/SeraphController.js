@@ -3,17 +3,6 @@ const testimonial = require('../model/TestimonialModel');
 const proof = require('../model/ProofModel');
 const moment = require('moment');
 
-const investigationObjToModel = investigation => {
-    return {
-        title : investigation.title,
-        description : investigation.description,
-        start : moment(investigation.start).format("Y-MM-DD HH:mm:SS"),
-        end : (investigation.end ? moment(investigation.end).format("Y-MM-DD HH:mm:SS") : undefined),
-        investigator : investigation.investigator,
-        realm : 1
-    }
-}
-
 const testimonialObjToModel = testimonial => {
     return {
         description : testimonial.description,
@@ -32,6 +21,18 @@ const proofObjToModel = proof => {
     }
 }
 
+const investigationObjToModel = investigation => {
+    return {
+        title : investigation.title,
+        description : investigation.description,
+        start : moment(investigation.start).format("Y-MM-DD HH:mm:SS"),
+        end : (investigation.end ? moment(investigation.end).format("Y-MM-DD HH:mm:SS") : undefined),
+        investigator : investigation.investigator,
+        realm : 1,
+        status : investigation.status
+    }
+}
+
 const investigationModelToObj = investigation => {
     return {
         title : investigation.title,
@@ -40,6 +41,7 @@ const investigationModelToObj = investigation => {
         start : moment(investigation.start).utcOffset(0, true).format(),
         end : (investigation.end ? moment(investigation.end).utcOffset(0, true).format() : undefined),
         investigator : investigation.investigator,
+        status : investigation.status,
         createdAt : investigation.createdAt,
         updatedAt : investigation.updatedAt
     }
@@ -59,7 +61,11 @@ const SeraphController = {
         return result;
     },
     createInvestigation : async newInvestigation => {
+        newInvestigation.status = 1;
         return result = await investigation.create(investigationObjToModel(newInvestigation));
+    },
+    updateInvestigation : async (investigationId, properties) => {
+        await investigation.update(properties,{ where: { id: investigationId } });
     },
     createTestimonial : async newTestimonial => {
         return result = await testimonial.create(testimonialObjToModel(newTestimonial));

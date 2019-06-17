@@ -115,6 +115,8 @@ body {
     background-color: #262626;
     color: #979797;
     border-color: #383838; }
+  .nightmode .table.table-hover tbody tr:hover {
+    color: #fff; }
   .nightmode .table td, .nightmode .table th {
     border-top-color: #1a1a1a; }
   .nightmode .table thead th {
@@ -245,6 +247,12 @@ body {
   font-size: 2.5rem;
   font-weight: 300;
   line-height: 0.9; }
+
+.btn-group-xs > .btn, .btn-xs {
+  padding: .175rem .35rem;
+  font-size: .875rem;
+  line-height: 1.25;
+  border-radius: .2rem; }
 
 body {
   /* Margin bottom by footer height */

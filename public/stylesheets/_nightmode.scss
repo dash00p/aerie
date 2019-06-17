@@ -12,12 +12,17 @@
         }
     }
 
-    .table td, .table th{
-        border-top-color: #1a1a1a;
-    }
+    .table{
+        &.table-hover tbody tr:hover{
+            color:#fff;
+        }
+        td, th{
+            border-top-color: #1a1a1a;
+        }
 
-    .table thead th{
-        border-bottom-color: #252525;
+        thead th{
+            border-bottom-color: #252525;
+        }
     }
 
     .footer, .modal-content{

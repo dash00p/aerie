@@ -10,9 +10,10 @@
         <div class="row mb-1 align-items-center">
             <p class="col-md-3 display-5 pr-0">Avancement:</p>
             <div class="col-md-9 pl-0">
-                <div class="progress">
+                <div class="progress" data-toggle="tooltip" data-tooltip-placement="top"
+                    title="Oui c'est un peu bullshit pour l'instant. Je sais.">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" ng-class="inVm.investigation.status === 1?'w-50':'w-100'"></div>
                 </div>
             </div>
 
@@ -22,7 +23,12 @@
             data-target="#newTestimonialModal">Ajouter un témoignage</a>
         <a class="btn btn-primary btn-lg mr-2" href="#" role="button" data-toggle="modal"
             data-target="#newProofModal">Ajouter une preuve</a>
-        <a class="btn btn-danger btn-lg" href="#" role="button">Clore l'enquête</a>
+        <a ng-show="inVm.investigation.status === 1"
+            class="btn btn-success btn-lg <%=(investigation.status===1?"":"ng-hide")%>" href="#" role="button"
+            ng-click="inVm.changeInvestigationStatus(2)">Clore l'enquête</a>
+        <a ng-show="inVm.investigation.status === 2"
+            class="btn btn-danger btn-lg <%=(investigation.status===1?"ng-hide":"")%>" href="#" role="button"
+            ng-click="inVm.changeInvestigationStatus(1)">Rouvrir l'enquête</a>
     </div>
     <ul class="nav nav-pills mt-5 mb-2">
         <li class="nav-item">
@@ -44,7 +50,8 @@
                             {{testimonial.description}}
                         </p>
                         <p class="card-text">
-                            <small class="text-muted">{{testimonial.depositionDate}}</small>
+                            <small class="text-muted">Déposée le
+                                {{testimonial.depositionDate | date:'dd/MM/yyyy à HH:mm'}}</small>
                         </p>
                     </div>
                 </div>
@@ -59,7 +66,8 @@
                             {{proof.description}}
                         </p>
                         <p class="card-text">
-                            <small class="text-muted">{{proof.discoveryDate}}</small>
+                            <small class="text-muted">Découverte le
+                                {{proof.discoveryDate | date:'dd/MM/yyyy à HH:mm'}}</small>
                         </p>
                     </div>
                 </div>
@@ -159,4 +167,4 @@
 </section>
 <%- contentFor('script') %>
 <script src="/javascripts/investigation.js"></script>
-<script>const investigationId = <%=investigation.id%>;</script>
+<script>const investigationId = <%=investigation.id%>; investigationStatus = <%=investigation.status %>;</script>

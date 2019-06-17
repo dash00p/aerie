@@ -39,6 +39,20 @@ function seraphCtrl($http) {
         }
     }
 
+    vm.changeInvestigationStatus = (investigation, newStatus, event) => {
+        if(event)
+            event.stopPropagation();
+            
+        investigation.status = newStatus;
+        $http.patch(`/seraph/investigation`, {investigationId : investigation.id, properties :{status: newStatus}})
+        .then( res => {
+            createToast('👌','Enquête mise à jour avec succès !');
+        })
+        .catch( res => {
+
+        });
+    }
+
     vm.checkInvestigationCoherence = () => {
         if(!vm.newInvestigation.start){
             vm.newInvestigation.error = {

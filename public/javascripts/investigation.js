@@ -5,6 +5,10 @@ function investigationCtrl($http) {
     vm.newTestimonial = {};
     vm.newProof = {};
     vm.editTestimonial = vm.editProof = false;
+    vm.investigation = {
+        id : investigationId,
+        status : investigationStatus
+    }
 
     $http.get(`/seraph/investigation/${investigationId}/records`).then(res => {
         vm.testimonials = res.data.testimonials;
@@ -13,6 +17,17 @@ function investigationCtrl($http) {
 
     vm.openTestimonialModal = () => {
 
+    }
+
+    vm.changeInvestigationStatus = (newStatus) => {
+        vm.investigation.status = newStatus;
+        $http.patch(`/seraph/investigation`, {investigationId : vm.investigation.id, properties :{status: newStatus}})
+        .then( res => {
+            createToast('👌','Enquête mise à jour avec succès !');
+        })
+        .catch( res => {
+            //TODO
+        });
     }
 
     vm.saveTestimonial = () => {
@@ -109,3 +124,7 @@ function investigationCtrl($http) {
 };
 
 app.controller("investigationCtrl", investigationCtrl);
+
+$(() =>{
+    $('[data-toggle="tooltip"]').tooltip()
+});

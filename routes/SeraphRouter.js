@@ -80,6 +80,17 @@ router.post('/investigation', async function (req, res, next) {
     res.send(investigation);
 });
 
+router.patch('/investigation', async function (req, res, next) {
+    if (!req.isAuthenticated())
+        return res.send(401, 'You must be logged in to use this ressource.');
+
+    if (req.user.rank < 20)
+        return res.send(401, 'You are not allowed to access this ressource.');
+
+    await controller.updateInvestigation(req.body.investigationId, req.body.properties);
+    res.send(204);
+});
+
 router.post('/testimonial', async function (req, res, next) {
     if (!req.isAuthenticated())
         return res.send(401, 'You must be logged in to use this ressource.');

@@ -41,6 +41,7 @@ function adminCtrl($http) {
             }
 
         }
+        //TODO Close Modal after http request
         vm.userToEdit.rights = undefined;
         if (newRights.length > 0) {
             let rightsToRemove = newRights.filter(r => !r.isActive);

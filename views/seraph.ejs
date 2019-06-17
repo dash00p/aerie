@@ -40,8 +40,16 @@
                 <td>{{investigation.investigator}}</td>
                 <td>{{investigation.updatedAt | date:'dd/MM/yyyy à HH:mm'}}</td>
                 <td>{{investigation.createdAt | date:'dd/MM/yyyy à HH:mm'}}</td>
-                <td></td>
-                <td></td>
+                <td>
+                    <span ng-if="investigation.status === 1" class="badge badge-pill badge-primary">En cours</span>
+                    <span ng-if="investigation.status === 2" class="badge badge-pill badge-success">Achevée</span>
+
+                </td>
+                <td>
+                    <button ng-if="investigation.status === 1" type="button" class="btn btn-success btn-xs" ng-click="seVm.changeInvestigationStatus(investigation, 2, $event)">Clore</button>
+
+                    <button ng-if="investigation.status === 2" type="button" class="btn btn-danger btn-xs" ng-click="seVm.changeInvestigationStatus(investigation, 1, $event)">Rouvrir</button>
+                </td>
             </tr>
         </tbody>
     </table>

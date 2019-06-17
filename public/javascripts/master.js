@@ -90,8 +90,12 @@ const services = angular.module('services', []);
 app = angular.module("aerie", ['ui.calendar', 'services'])
     .run(function ($rootScope) {
         $rootScope.openLink = link => {
-            if (link.includes('/'))
-                window.location.href = window.location.href + link;
+            if (link.includes('/')){
+                let url = window.location.href;
+                if(url.slice(-1) === "/")
+                    url = url.slice(0, -1);
+                window.location.href = url + link;
+            }
             else
                 window.location.href = link;
         };

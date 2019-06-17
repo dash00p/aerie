@@ -26,8 +26,9 @@ const model = sequelize.define('investigation', {
     description: { type: Sequelize.STRING, allowNull: false},
     start: { type: 'TIMESTAMP', allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')},
     end: { type: 'TIMESTAMP', allowNull: true, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')},
-    realm : Sequelize.TINYINT,
-    investigator : { type: Sequelize.STRING(50), allowNull: false}
+    realm : Sequelize.TINYINT,//TODO: normalize realm in every needed model
+    investigator : { type: Sequelize.STRING(50), allowNull: false},
+    status: Sequelize.TINYINT
   });
 
 if(app.get('env') === 'development')
