@@ -18,8 +18,8 @@ function getCookie(name) {
     }
     return null;
 }
-function eraseCookie(name) {   
-    document.cookie = name+'=; Max-Age=-99999999; path=/';  
+function eraseCookie(cookieName) {   
+    document.cookie = `${cookieName}= ; expires = Thu, 01 Jan 1970 00:00:00 GMT]`;
 }
 
 function createToast(title, text, delay){
