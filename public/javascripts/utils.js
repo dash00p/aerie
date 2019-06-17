@@ -6,7 +6,7 @@ function setCookie(name,value,days) {
         date.setTime(date.getTime() + (days*24*60*60*1000));
         expires = "; expires=" + date.toUTCString();
     }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/aerie";
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }
 function getCookie(name) {
     var nameEQ = name + "=";
@@ -19,7 +19,7 @@ function getCookie(name) {
     return null;
 }
 function eraseCookie(name) {   
-    document.cookie = name+'=; Max-Age=-99999999; path=/aerie';  
+    document.cookie = name+'=; Max-Age=-99999999; path=/';  
 }
 
 function createToast(title, text, delay){
