@@ -11,7 +11,7 @@ router.post('/new', async function (req, res, next) {
       req.session.passport = JSON.stringify(req.session.passport);
       req.session.save(function (err) {
         req.session.newAccount = true;
-        return res.redirect('/profile');
+        return res.redirect('/user');
       });
     });
   }
